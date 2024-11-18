@@ -1,5 +1,5 @@
 
--- CREATE DATABASE Plataforma_streaming; 
+#CREATE DATABASE Plataforma_streaming; 
 USE Plataforma_streaming;
 
 DROP TABLE IF EXISTS Formulario;
@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS Categorias;
 DROP TABLE IF EXISTS Capitulos;
 DROP TABLE IF EXISTS Artistas;
 DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS Peliculas;
 
 -- Tabla Usuarios
 CREATE TABLE Usuarios (
@@ -95,7 +96,19 @@ CREATE TABLE Contenido_Artistas (
     PRIMARY KEY (contenido_id, artista_id)
 );
 
+-- Tabla Peliculas
+create table Peliculas(
+	contenido_id INT not null,
+	primary key (contenido_id),
+	FOREIGN KEY (contenido_id) REFERENCES Contenido(contenido_id)
+);
 
+-- Tabla Series
+create table Series(
+	contenido_id int not null,
+	primary key (contenido_id),
+	FOREIGN KEY (contenido_id) REFERENCES Contenido(contenido_id)
+);
 
 
 
