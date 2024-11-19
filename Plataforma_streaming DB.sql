@@ -54,7 +54,6 @@ CREATE TABLE Categorias(
 CREATE TABLE Contenido (
     contenido_id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
-    tipo ENUM('pelicula', 'serie') NOT NULL, #Preguntar
     puntuacion DECIMAL(2, 1),
     categoria_id INT,
     apto_kids BOOL,
@@ -77,10 +76,9 @@ CREATE TABLE Historial (
 
 -- Tabla Artistas
 CREATE TABLE Artistas (
-    artista_id INT PRIMARY KEY AUTO_INCREMENT,
+    artista_id INT  not null AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
-    rol ENUM('actor', 'director', 'productor') NOT NULL,
-    personaje VARCHAR(255) NULL
+    PRIMARY KEY (artista_id)
 );
 
 -- Tabla de relación entre Artistas y Contenido
@@ -133,6 +131,79 @@ VALUES(1, 'Nacho', 'nachoferre22@gmail.com', "123");
 insert into Usuarios(usuario_id, nombre,email,contraseña)
 VALUES(2, 'Nico', 'nicocricco@gmail.com', "123");
 
+insert into categorias(nombre) values("Policial");
+insert into categorias(nombre) values("Romantica");
+insert into categorias(nombre) values("Suspenso");
+insert into categorias(nombre) values("Comedia");
+insert into categorias(nombre) values("RomCom");
+insert into categorias(nombre) values("Accion");
+
+insert into Artistas(nombre) values("Tom Hanks");
+insert into Artistas(nombre) values("Tom Cruz");
+insert into Artistas(nombre) values("Tom Holland");
+insert into Artistas(nombre) values("Tom Hiddleston");
+insert into Artistas(nombre) values("Tom Hardy");
+insert into Artistas(nombre) values("Tom Selleck");
+insert into Artistas(nombre) values("Tom Ellis");
+
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Forrest Gump",4,4,FALSE); #1
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Mission Imposible",5,6,True); #2
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Spiderman",4,6,True); #3
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Loki",3,6,True); #4
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Venom",4,6,FALSE); #5
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Magnum PI",5,1,FALSE); #6
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Lucifer",3,5,FALSE); #7
+
+insert into peliculas (contenido_id,duracion)values(1,"2:30:00");
+insert into peliculas (contenido_id,duracion)values(2,"3:30:30");
+insert into peliculas (contenido_id,duracion)values(3,"1:30:00");
+insert into peliculas (contenido_id,duracion)values(4,"2:45:30");
+insert into peliculas (contenido_id,duracion)values(5,"2:30:20");
+
+insert into series (contenido_id)values(6);
+insert into series (contenido_id)values(7);
+
+insert into Temporada (contenido_id,temporada_id) values(6,1);
+insert into Temporada (contenido_id,temporada_id) values(6,2);
+insert into Temporada (contenido_id,temporada_id) values(7,1);
+
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,1);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,2);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,3);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,4);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,5);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,6);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,7);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,1,8);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,1);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,2);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,3);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,4);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,5);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,6);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,7);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(6,2,8);
+
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,1);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,2);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,3);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,4);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,5);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,6);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,7);
+insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,8);
+
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Nacho");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Nacho2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Julian"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"Pato"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"Child"); 
+
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico3"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico4"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico5"); 
 
 
 
