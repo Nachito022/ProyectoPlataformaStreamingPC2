@@ -20,6 +20,7 @@ def autenticacion(cursor,datos_usuario):
             login_exitoso = True
             datos = [usuario,login_exitoso,UtilsVarios.get_current_time()]
             consultas.insertar_en_formulario(cursor,datos)
+            return True
         else:
             datos = [usuario,login_exitoso,UtilsVarios.get_current_time()]
             consultas.insertar_en_formulario(cursor,datos)
@@ -39,11 +40,10 @@ def username_and_password(datos_usuario):
         cursor = cnx.cursor()
         try:
             # Inicio de las operaciones
-            autenticacion(cursor,datos_usuario)
+            fueExitoso = autenticacion(cursor,datos_usuario)
             # Confirma todos los cambios
             cnx.commit()
             print("Operaciones completadas exitosamente" )
-            fueExitoso = True
         except mysql.connector.Error as err:
             # Deshacer los cambios no confirmados
             cnx.rollback()

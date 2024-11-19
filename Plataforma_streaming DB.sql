@@ -134,3 +134,5 @@ insert into Usuarios(usuario_id, nombre,email,contraseña)
 VALUES(2, 'Nico', 'nicocricco@gmail.com', "123");
 
 
+
+

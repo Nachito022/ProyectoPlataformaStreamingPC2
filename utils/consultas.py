@@ -27,6 +27,7 @@ def check_user_data(cursor,datos_usuario):
     else:
         return 0
 
+#Esta función realiza la consulta si existe el usuario 
 def consulta_nombre_user(cursor,nombre_usuario):
     # Consulta a realizar
     consulta = """
