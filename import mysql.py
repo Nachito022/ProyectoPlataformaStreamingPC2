@@ -1,11 +1,18 @@
 import mysql.connector
 from utils import ConfigDatabase
+import models.interfase as interfase
 
 config = ConfigDatabase.get_config()
+
+interfase1 = interfase.main()
+
+
 
 def autenticacion(cursor):
      # Inicio de las operaciones
      cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(1,True,"2012-06-18 10:34:10")""" )
+
+
 
 
 cnx = mysql.connector.connect(**config)
