@@ -63,9 +63,11 @@ CREATE TABLE Contenido (
 
 -- Tabla Progreso de Contenido
 CREATE TABLE Historial (
-    perfil_id INT,
-    contenido_id INT,
+    perfil_id INT not null,
+    contenido_id INT not null,
     capitulo_actual INT,
+    temporada_actual INT,
+    tiempo_visualizado TIME,
     fecha_visto DATE,
     valoracion INT CHECK (valoracion BETWEEN 1 AND 5),
     PRIMARY KEY (perfil_id, contenido_id),
@@ -205,5 +207,7 @@ insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico3");
 insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico4"); 
 insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico5"); 
 
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,6,5,1,"0:20:00","2020:05:16",5);
 
-
+#insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
