@@ -1,11 +1,11 @@
 import mysql.connector
-import ConfigDatabase
+from utils import ConfigDatabase
 
 config = ConfigDatabase.get_config()
 
 def autenticacion(cursor):
      # Inicio de las operaciones
-     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(1,False,"2012-06-18 10:34:10")""" )
+     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(1,True,"2012-06-18 10:34:10")""" )
 
 
 cnx = mysql.connector.connect(**config)
