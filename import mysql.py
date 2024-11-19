@@ -9,7 +9,7 @@ config = {
 
 def autenticacion(cursor):
      # Inicio de las operaciones
-     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(2,False,'20120618 10:34:10 AM')""" )
+     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(1,False,"20-12-2018 10:34:10 AM")""" )
 
 
 cnx = mysql.connector.connect(**config)

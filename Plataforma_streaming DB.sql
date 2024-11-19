@@ -31,7 +31,7 @@ CREATE TABLE Formulario (
     intento_id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT not null,
     exitoso BOOLEAN NOT NULL,
-    fecha_hora DATETIME not null,
+    fecha_hora datetime not null,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id)
 );
 
