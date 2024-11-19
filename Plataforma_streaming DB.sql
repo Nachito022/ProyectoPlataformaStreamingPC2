@@ -118,10 +118,10 @@ create table Temporada (
 -- Tabla Capítulos (solo para contenido de tipo serie)
 CREATE TABLE Capitulos (
     capitulo_id INT PRIMARY KEY AUTO_INCREMENT,
-    contenido_id INT,
+    contenido_id INT NOT NULL,
     temporada_id INT NOT NULL,
     numero_capitulo INT NOT null,
-    FOREIGN KEY (temporada_id) REFERENCES Temporada(temporada_id)
+    FOREIGN KEY (contenido_id,temporada_id) REFERENCES Temporada(contenido_id,temporada_id)
 );
 
 
