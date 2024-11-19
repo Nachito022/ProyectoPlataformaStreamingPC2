@@ -47,7 +47,9 @@ class Interfase:
         show = HIDE_CHAR if not self.password_entry.cget('show') else ''
         self.password_entry.config(show=show)
 
-
+    def add_incorrect_info(self):
+        label_error = tkinter.Label(self.mainframepasword,fg='red', text="Username/Password is incorrect")
+        label_error.grid(column=1, row=4)
 
     def add_password_mainframe_items(self):
     # Entry box to get username from users.
@@ -79,6 +81,8 @@ class Interfase:
         data = [self.get_entry_username(),self.get_entry_password()]
         if(mysqlConnection.username_and_password(data)):
             self.change_mainframe_notebook()
+        else:
+            self.add_incorrect_info()
 
     #cambia el mainframe al del programa
     def change_mainframe_notebook(self):
