@@ -4,7 +4,7 @@ config = {
     "user": "root",
     "password" : "",
     "host": "localhost",
-    "database": "ejemplo_materias"
+    "database": "plataform_streaming"
 }
 
 cnx = mysql.connector.connect(**config)
