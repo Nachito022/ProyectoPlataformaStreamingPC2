@@ -1,11 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter
+from utils import mysqlConnection
 
 #variable util para esconder la contraseña en el entry
 HIDE_CHAR = '*'
-
-
 
 class Interfase:
 
@@ -77,8 +76,9 @@ class Interfase:
         
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
-        print("Check if person exists")
-        self.change_mainframe_notebook()
+        data = [self.get_entry_username(),self.get_entry_password()]
+        mysqlConnection.username_and_password(data)
+        #self.change_mainframe_notebook()
 
     #cambia el mainframe al del programa
     def change_mainframe_notebook(self):
@@ -87,11 +87,11 @@ class Interfase:
 
     #getter
     def get_entry_password(self):
-        return self.password
+        return str(self.password.get())
     
     #getter
     def get_entry_username(self):
-        return self.username
+        return str(self.username.get())
 
 
 #función main
