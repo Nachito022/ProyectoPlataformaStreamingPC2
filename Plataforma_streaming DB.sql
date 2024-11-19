@@ -26,9 +26,9 @@ CREATE TABLE Usuarios (
 -- Tabla Intentos de Autenticación
 CREATE TABLE Formulario (
     intento_id INT PRIMARY KEY AUTO_INCREMENT,
-    usuario_id INT,
+    usuario_id INT not null,
     exitoso BOOLEAN NOT NULL,
-    fecha_hora DATETIME,
+    fecha_hora DATETIME not null,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE Categorias(
 CREATE TABLE Contenido (
     contenido_id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
-    tipo ENUM('pelicula', 'serie') NOT NULL,
+    tipo ENUM('pelicula', 'serie') NOT NULL, #Preguntar
     puntuacion DECIMAL(2, 1),
     categoria_id INT,
     apto_kids BOOL,
@@ -71,13 +71,6 @@ CREATE TABLE Historial (
     FOREIGN KEY (contenido_id) REFERENCES Contenido(contenido_id)
 );
 
--- Tabla Capítulos (solo para contenido de tipo serie)
-CREATE TABLE Capitulos (
-    capitulo_id INT PRIMARY KEY AUTO_INCREMENT,
-    contenido_id INT,
-    temporada_id INT NOT NULL,
-    numero_capitulo INT NOT NULL
-);
 
 -- Tabla Artistas
 CREATE TABLE Artistas (
@@ -99,20 +92,37 @@ CREATE TABLE Contenido_Artistas (
 );
 
 -- Tabla Peliculas
-create table Peliculas(
+create table Peliculas (
 	contenido_id INT not null,
+	duracion TIME not null,
 	primary key (contenido_id),
 	FOREIGN KEY (contenido_id) REFERENCES Contenido(contenido_id)
 );
 
 -- Tabla Series
-create table Series(
+create table Series (
 	contenido_id int not null,
 	primary key (contenido_id),
 	FOREIGN KEY (contenido_id) REFERENCES Contenido(contenido_id)
 );
 
+-- Tabla Temporada
+create table Temporada (
+	contenido_id int not null,
+	temporada_id int not null,
+	primary key (contenido_id,temporada_id),
+	FOREIGN KEY (contenido_id) REFERENCES Series(contenido_id)
+);
 
+
+-- Tabla Capítulos (solo para contenido de tipo serie)
+CREATE TABLE Capitulos (
+    capitulo_id INT PRIMARY KEY AUTO_INCREMENT,
+    contenido_id INT,
+    temporada_id INT NOT NULL,
+    numero_capitulo INT NOT null,
+    FOREIGN KEY (temporada_id) REFERENCES Temporada(temporada_id)
+);
 
 
 
