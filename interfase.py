@@ -77,7 +77,7 @@ class Interfase:
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
         data = [self.get_entry_username(),self.get_entry_password()]
-        mysqlConnection.username_and_password(data)
+        print(mysqlConnection.username_and_password(data))
         #self.change_mainframe_notebook()
 
     #cambia el mainframe al del programa
