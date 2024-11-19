@@ -127,7 +127,10 @@ CREATE TABLE Capitulos (
     FOREIGN KEY (contenido_id,temporada_id) REFERENCES Temporada(contenido_id,temporada_id)
 );
 
+insert into Usuarios(usuario_id, nombre,email,contraseña)
+VALUES(1, 'Nacho', 'nachoferre22@gmail.com', "123");
 
-
+insert into Usuarios(usuario_id, nombre,email,contraseña)
+VALUES(2, 'Nico', 'nicocricco@gmail.com', "123");
 
 
