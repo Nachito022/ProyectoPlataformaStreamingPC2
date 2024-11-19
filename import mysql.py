@@ -2,11 +2,36 @@ import mysql.connector
 
 config = {
     "user": "root",
-    "password" : "",
+    "password" : "28072000Nn",
     "host": "localhost",
-    "database": "ejemplo_materias"
+    "database": "plataforma_streaming"
 }
+
+def autenticacion(cursor):
+     # Inicio de las operaciones
+     cursor.execute( """INSERT INTO Formulario(exitoso,fecha_hora) VALUES(True,18-06-12 10:34:09 AM)""" )
+
+
+
+
+
 
 cnx = mysql.connector.connect(**config)
 print("Conectado",cnx.is_connected())
-cnx.close()
+
+if cnx.is_connected():
+    cursor = cnx.cursor()
+    try:
+        # Inicio de las operaciones
+        autenticacion(cursor)
+        # Confirma todos los cambios
+        cnx.commit()
+        print("Operaciones completadas exitosamente" )
+    except mysql.connector.Error as err:
+        # Deshacer los cambios no confirmados
+        cnx.rollback()
+        print(f"Error en el proceso: {err}")
+    finally:
+        # Cerrar el cursor y la conexión
+        cursor.close()
+        cnx.close()
