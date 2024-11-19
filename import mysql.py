@@ -1,15 +1,11 @@
 import mysql.connector
+import ConfigDatabase
 
-config = {
-    "user": "root",
-    "password" : "28072000Nn",
-    "host": "localhost",
-    "database": "plataforma_streaming"
-}
+config = ConfigDatabase.get_config()
 
 def autenticacion(cursor):
      # Inicio de las operaciones
-     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(2,False,'20120618 10:34:10 AM')""" )
+     cursor.execute( """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(1,False,"2012-06-18 10:34:10")""" )
 
 
 cnx = mysql.connector.connect(**config)
