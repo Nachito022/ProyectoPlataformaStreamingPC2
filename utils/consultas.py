@@ -47,3 +47,7 @@ def consulta_nombre_user(cursor,nombre_usuario):
 def insertar_en_formulario(cursor,datos):
     consulta =  """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(%s, %s, %s)""" 
     cursor.execute(consulta,datos)
+
+def insertar_nuevo_usuario(cursor,datos):
+    consulta =  """INSERT INTO Usuarios(nombre,email,contraseña) VALUES(%s, %s, %s)""" 
+    cursor.execute(consulta,datos)

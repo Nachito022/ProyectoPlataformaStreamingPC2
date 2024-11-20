@@ -63,8 +63,16 @@ class Interfase:
         self.Newpassword_entry.config(show=show)
 
     def add_incorrect_info(self):
-        label_error = tkinter.Label(self.mainframepasword,fg='red', text="Username/Password is incorrect")
-        label_error.grid(column=1, row=4)
+        label_error_1 = tkinter.Label(self.mainframepasword,fg='red', text="Username/Password is incorrect")
+        label_error_1.grid(column=1, row=4)
+
+    def add_success_info(self):
+        label_success_1 = tkinter.Label(self.mainframepasword,fg='green', text="User Added Correctly")
+        label_success_1.grid(column=1, row=4)
+
+    def add_user_exists_warning(self):
+        label_error_2 = tkinter.Label(self.mainframeNewUser,fg='red', text="Username already exists!")
+        label_error_2.grid(column=1, row=5)
 
     def add_password_mainframe_items(self):
     # Entry box to get username from users.
@@ -135,28 +143,45 @@ class Interfase:
         self.Newusername_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.Newusername)
         self.Newusername_entry.grid(column=1, row=1)
 
+        #Entry box to get password from users.
+        self.NewEmail = StringVar()
+        self.NewEmail_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewEmail)
+        self.NewEmail_entry.grid(column=1, row=2)    
 
         # Entry box to get password from users.
         self.Newpassword = StringVar()
         self.Newpassword_entry = ttk.Entry(self.mainframeNewUser, show=HIDE_CHAR, textvariable=self.Newpassword)
-        self.Newpassword_entry.grid(column=1, row=2)
+        self.Newpassword_entry.grid(column=1, row=3)
 
         #Botón para mostrar la contranseña, por default no se puede ver
         toggle_new_btn = ttk.Button(self.mainframeNewUser, text='Toggle password display', command=self.toggle_password_display_newuser)
-        toggle_new_btn.grid(column=1, row=3)
+        toggle_new_btn.grid(column=1, row=4)
 
-        enter_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Add New User', command=self.set_mainframe_notebook_newuser)
-        enter_new_passord_btn.grid(column=3, row=2)
+        enter_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Add New User', command=self.interfase_create_new_user)
+        enter_new_passord_btn.grid(column=3, row=3)
 
         quit_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Cancel New User', command=self.set_mainframe_notebook_password)
-        quit_new_passord_btn.grid(column=3, row=3)
+        quit_new_passord_btn.grid(column=0, row=4)
 
         # Create two labels
         label_newusername = tkinter.Label(self.mainframeNewUser, text="New Username")
         label_newusername.grid(column=0, row=1)
+        # Create two labels
+        label_newEmail = tkinter.Label(self.mainframeNewUser, text="New Email")
+        label_newEmail.grid(column=0, row=2)
         label_newpassword = tkinter.Label(self.mainframeNewUser, text="New Password")
-        label_newpassword.grid(column=0, row=2)
+        label_newpassword.grid(column=0, row=3)
 
+    def interfase_create_new_user(self):
+        datos = [self.get_entry_new_username(),self.get_entry_new_email(),self.get_entry_new_password()]
+        if(logic.new_user_email_password(datos)):
+            self.set_mainframe_notebook_password()
+            self.add_success_info()
+        else:
+            self.add_user_exists_warning()
+
+    
+    
     #getter
     def get_entry_password(self):
         return str(self.password.get())
@@ -164,6 +189,18 @@ class Interfase:
     #getter
     def get_entry_username(self):
         return str(self.username.get())
+    
+        #getter
+    def get_entry_new_password(self):
+        return str(self.Newpassword.get())
+    
+    #getter
+    def get_entry_new_username(self):
+        return str(self.Newusername.get())
+    
+    #getter
+    def get_entry_new_email(self):
+        return str(self.NewEmail.get())
 
 
 #función main
