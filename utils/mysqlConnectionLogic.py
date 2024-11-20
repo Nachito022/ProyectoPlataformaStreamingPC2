@@ -58,6 +58,28 @@ def new_user_email_password(datos_usuario):
     return fueExitoso
     
 
+def get_profiles_for_interfase(datos_usuario):
+    config = ConfigDatabase.get_config()
+    cnx = mysql.connector.connect(**config)
+    print("Conectado",cnx.is_connected())
+    datos_perfiles = []
+    if cnx.is_connected():
+        cursor = cnx.cursor()
+        try:
+            # Inicio de las operaciones
+            datos_perfiles.append(consultas.consulta_perfiles_asociados(cursor,datos_usuario))
+            # Confirma todos los cambios
+            cnx.commit()
+            print("Operaciones completadas exitosamente" )
+        except mysql.connector.Error as err:
+            # Deshacer los cambios no confirmados
+            cnx.rollback()
+            print(f"Error en el proceso: {err}")       
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            cnx.close()
+    return datos_perfiles[0]
 
 
 def username_and_password(datos_usuario):
