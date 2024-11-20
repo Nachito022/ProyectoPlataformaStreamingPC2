@@ -51,3 +51,13 @@ def insertar_en_formulario(cursor,datos):
 def insertar_nuevo_usuario(cursor,datos):
     consulta =  """INSERT INTO Usuarios(nombre,email,contraseña) VALUES(%s, %s, %s)""" 
     cursor.execute(consulta,datos)
+
+def consulta_perfiles_asociados(cursor,usuario):
+    consulta = """
+    SELECT P.usuario_id,perfil_id,P.nombre
+    FROM Usuarios U,Perfiles P
+    WHERE U.usuario_id = P.usuario_id and U.nombre = %s
+    """
+    cursor.execute(consulta,usuario)
+    filas = cursor.fetchall()
+    return filas
