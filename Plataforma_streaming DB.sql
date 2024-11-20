@@ -127,11 +127,14 @@ CREATE TABLE Capitulos (
     FOREIGN KEY (contenido_id,temporada_id) REFERENCES Temporada(contenido_id,temporada_id)
 );
 
-insert into Usuarios(usuario_id, nombre,email,contraseña)
-VALUES(1, 'Nacho', 'nachoferre22@gmail.com', "123");
-
-insert into Usuarios(usuario_id, nombre,email,contraseña)
-VALUES(2, 'Nico', 'nicocricco@gmail.com', "123");
+insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(1,'Test', 'test@gmail.com', "12345");
+insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(2,'Nacho', 'nachoferre22@gmail.com', "123");
+insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(3,'Nico', 'nicocricco@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Juan', 'juan@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Pepe', 'pepe@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Martin', 'martin@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Martin2', 'martin2@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Julian', 'julain@gmail.com', "123");
 
 insert into categorias(nombre) values("Policial");
 insert into categorias(nombre) values("Romantica");
@@ -195,17 +198,24 @@ insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,6);
 insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,7);
 insert into capitulos (contenido_id,temporada_id,numero_capitulo) values(7,1,8);
 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Nacho");    
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Nacho2"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"Julian"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"Pato"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"Child"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nacho");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nacho2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Julian"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Pato"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Child"); 
 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico");    
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico2"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nico3"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico4"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Nico5"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test1");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test3"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test4"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"testChild1"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"testChild2"); 
+
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico3"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'infantil',"Nico4"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'infantil',"Nico5"); 
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,6,5,1,"0:20:00","2020:05:16",5);
