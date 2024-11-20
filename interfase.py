@@ -1,10 +1,11 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter
-from utils import mysqlConnection
+from utils import mysqlConnectionLogic as logic
 
 #variable util para esconder la contraseña en el entry
 HIDE_CHAR = '*'
+HIDE_CHAR_NEWUSER = '*'
 
 class Interfase:
 
@@ -27,10 +28,17 @@ class Interfase:
         self.mainframegeneral.columnconfigure(0, weight=1)
         self.mainframegeneral.rowconfigure(0, weight=1)
 
+        self.mainframeNewUser = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframeNewUser.grid(column=0, row=0, sticky=(N, W, E, S))
+        self.mainframeNewUser.columnconfigure(0, weight=1)
+        self.mainframeNewUser.rowconfigure(0, weight=1)
+
         #agregar los elementos como labels, buttons, etc a pantalla
         self.add_password_mainframe_items()
-        
 
+        self.option_registro_usuario_nuevo()
+        
+        self.add_menubar(root)
 
         for child in self.mainframepasword.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
@@ -40,12 +48,19 @@ class Interfase:
 
         self.notebook.add(self.mainframepasword, text="Username and Password")
         self.notebook.add(self.mainframegeneral, text="Streaming")
+        self.notebook.add(self.mainframeNewUser, text="Add New User")
         self.notebook.hide(self.mainframegeneral)
+        self.notebook.hide(self.mainframeNewUser)
 
     #Función que cambia si se puede visualizar el password
     def toggle_password_display(self):
         show = HIDE_CHAR if not self.password_entry.cget('show') else ''
         self.password_entry.config(show=show)
+    
+        #Función que cambia si se puede visualizar el password
+    def toggle_password_display_newuser(self):
+        show = HIDE_CHAR_NEWUSER if not self.Newpassword_entry.cget('show') else ''
+        self.Newpassword_entry.config(show=show)
 
     def add_incorrect_info(self):
         label_error = tkinter.Label(self.mainframepasword,fg='red', text="Username/Password is incorrect")
@@ -79,15 +94,68 @@ class Interfase:
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
         data = [self.get_entry_username(),self.get_entry_password()]
-        if(mysqlConnection.username_and_password(data)):
-            self.change_mainframe_notebook()
+        if(logic.username_and_password(data)):
+            self.set_mainframe_notebook_general()
         else:
             self.add_incorrect_info()
 
     #cambia el mainframe al del programa
-    def change_mainframe_notebook(self):
+    def set_mainframe_notebook_general(self):
         self.notebook.add(self.mainframegeneral)
         self.notebook.hide(self.mainframepasword)
+        self.notebook.hide(self.mainframeNewUser)
+
+    #cambia el mainframe al del programa
+    def set_mainframe_notebook_newuser(self):
+        self.notebook.add(self.mainframeNewUser)
+        self.notebook.hide(self.mainframepasword)
+        self.notebook.hide(self.mainframegeneral)
+
+        #cambia el mainframe al del programa
+    def set_mainframe_notebook_password(self):
+        self.notebook.add(self.mainframepasword)
+        self.notebook.hide(self.mainframeNewUser)
+        self.notebook.hide(self.mainframegeneral)
+
+
+    def add_menubar(self,root):
+        #add menu for adding points and lines
+        menubar = tkinter.Menu(root)
+        options_menu = tkinter.Menu(menubar,tearoff=False)
+        options_menu.add_command(label="Registrarse",command=self.set_mainframe_notebook_newuser)
+        #options_menu.add_command(label="Add line")
+
+        # Append the menu to the menubar.
+        menubar.add_cascade(menu=options_menu,label="Options")
+        root.config(menu=menubar)
+
+    def option_registro_usuario_nuevo(self):
+        # Entry box to get username from users.
+        self.Newusername = StringVar()
+        self.Newusername_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.Newusername)
+        self.Newusername_entry.grid(column=1, row=1)
+
+
+        # Entry box to get password from users.
+        self.Newpassword = StringVar()
+        self.Newpassword_entry = ttk.Entry(self.mainframeNewUser, show=HIDE_CHAR, textvariable=self.Newpassword)
+        self.Newpassword_entry.grid(column=1, row=2)
+
+        #Botón para mostrar la contranseña, por default no se puede ver
+        toggle_new_btn = ttk.Button(self.mainframeNewUser, text='Toggle password display', command=self.toggle_password_display_newuser)
+        toggle_new_btn.grid(column=1, row=3)
+
+        enter_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Add New User', command=self.set_mainframe_notebook_newuser)
+        enter_new_passord_btn.grid(column=3, row=2)
+
+        quit_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Cancel New User', command=self.set_mainframe_notebook_password)
+        quit_new_passord_btn.grid(column=3, row=3)
+
+        # Create two labels
+        label_newusername = tkinter.Label(self.mainframeNewUser, text="New Username")
+        label_newusername.grid(column=0, row=1)
+        label_newpassword = tkinter.Label(self.mainframeNewUser, text="New Password")
+        label_newpassword.grid(column=0, row=2)
 
     #getter
     def get_entry_password(self):
