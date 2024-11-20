@@ -10,6 +10,8 @@ HIDE_CHAR_NEWUSER = '*'
 class Interfase:
 
     def __init__(self, root):
+        self._username_id = []
+        self._perfil_id = []
 
         root.title("Streaming Movies")
 
@@ -18,10 +20,10 @@ class Interfase:
         self.notebook.pack(pady=10)
 
         #Se agregan 2 mainframes: uno para el login, y el otro para el programa en sí
-        self.mainframepasword = ttk.Frame(self.notebook, padding="3 3 12 12")
-        self.mainframepasword.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.mainframepasword.columnconfigure(0, weight=1)
-        self.mainframepasword.rowconfigure(0, weight=1)
+        self.mainframepassword = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframepassword.grid(column=0, row=0, sticky=(N, W, E, S))
+        self.mainframepassword.columnconfigure(0, weight=1)
+        self.mainframepassword.rowconfigure(0, weight=1)
 
         self.mainframegeneral = ttk.Frame(self.notebook, padding="3 3 12 12")
         self.mainframegeneral.grid(column=0, row=0, sticky=(N, W, E, S))
@@ -33,24 +35,36 @@ class Interfase:
         self.mainframeNewUser.columnconfigure(0, weight=1)
         self.mainframeNewUser.rowconfigure(0, weight=1)
 
+        self.mainframePickprofile = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframePickprofile.grid(column=0, row=0, sticky=N+S+E+W)
+        self.mainframePickprofile.columnconfigure(0, weight=1)
+        self.mainframePickprofile.rowconfigure(0, weight=1)
+
         #agregar los elementos como labels, buttons, etc a pantalla
         self.add_password_mainframe_items()
+        
 
         self.option_registro_usuario_nuevo()
+
+        self.label_error_success = tkinter.Label(self.mainframepassword,fg='red', text="")
+        self.label_error_success.grid(column=1, row=4)
+
         
         self.add_menubar(root)
 
-        for child in self.mainframepasword.winfo_children(): 
+        for child in self.mainframepassword.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
         for child in self.mainframegeneral.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
 
 
-        self.notebook.add(self.mainframepasword, text="Username and Password")
+        self.notebook.add(self.mainframepassword, text="Username and Password")
         self.notebook.add(self.mainframegeneral, text="Streaming")
         self.notebook.add(self.mainframeNewUser, text="Add New User")
+        self.notebook.add(self.mainframePickprofile,text="Pick Profile")
         self.notebook.hide(self.mainframegeneral)
         self.notebook.hide(self.mainframeNewUser)
+        self.notebook.hide(self.mainframePickprofile)
 
     #Función que cambia si se puede visualizar el password
     def toggle_password_display(self):
@@ -63,68 +77,101 @@ class Interfase:
         self.Newpassword_entry.config(show=show)
 
     def add_incorrect_info(self):
-        label_error_1 = tkinter.Label(self.mainframepasword,fg='red', text="Username/Password is incorrect")
-        label_error_1.grid(column=1, row=4)
+        self.label_error_success.config(text="Username/Password is incorrect",fg='red')
 
     def add_success_info(self):
-        label_success_1 = tkinter.Label(self.mainframepasword,fg='green', text="User Added Correctly")
-        label_success_1.grid(column=1, row=4)
+        self.label_error_success.config(fg='green', text="User Added Correctly")
+        self.label_error_2.config(text="")
+
 
     def add_user_exists_warning(self):
-        label_error_2 = tkinter.Label(self.mainframeNewUser,fg='red', text="Username already exists!")
-        label_error_2.grid(column=1, row=5)
+        self.label_error_2 = tkinter.Label(self.mainframeNewUser,fg='red', text="Username already exists!")
+        self.label_error_2.grid(column=1, row=5)
 
     def add_password_mainframe_items(self):
     # Entry box to get username from users.
-        self.username = StringVar()
-        self.username_entry = ttk.Entry(self.mainframepasword, textvariable=self.username)
+        self.username = StringVar(value="test")
+        self.username_entry = ttk.Entry(self.mainframepassword, textvariable=self.username)
         self.username_entry.grid(column=1, row=1)
 
 
         # Entry box to get password from users.
-        self.password = StringVar()
-        self.password_entry = ttk.Entry(self.mainframepasword, show=HIDE_CHAR, textvariable=self.password)
+        self.password = StringVar(value="12345")
+        self.password_entry = ttk.Entry(self.mainframepassword, show=HIDE_CHAR, textvariable=self.password)
         self.password_entry.grid(column=1, row=2)
 
         #Botón para mostrar la contranseña, por default no se puede ver
-        toggle_btn = ttk.Button(self.mainframepasword, text='Toggle password display', command=self.toggle_password_display)
+        toggle_btn = ttk.Button(self.mainframepassword, text='Toggle password display', command=self.toggle_password_display)
         toggle_btn.grid(column=1, row=3)
 
-        enter_passord_btn = ttk.Button(self.mainframepasword, text='Login', command=self.check_username_and_password)
+        enter_passord_btn = ttk.Button(self.mainframepassword, text='Login', command=self.check_username_and_password)
         enter_passord_btn.grid(column=3, row=2)
 
         # Create two labels
-        label_username = tkinter.Label(self.mainframepasword, text="Username")
+        label_username = tkinter.Label(self.mainframepassword, text="Username")
         label_username.grid(column=0, row=1)
-        label_password = tkinter.Label(self.mainframepasword, text="Password")
+        label_password = tkinter.Label(self.mainframepassword, text="Password")
         label_password.grid(column=0, row=2)
+
+    def add_profile_mainframe_items(self):
+        user_data = logic.get_profiles_for_interfase(self.get_username_id_variable())
+        print(user_data)
+        #Botón para elegir perfil
+        #El user_data tiene la siguiente forma: (usuario_id,perfil_id,nombre)
+        #Se asocia a cada boton el comando de cambiar de mainframe con su respectivo numero de perfil, para ello se utiliza la funcion lambda
+        for i in range(6):
+            if(i<len(user_data)):
+                b = Button(self.mainframePickprofile, text=user_data[i][2],height = 2, width = 10,command=lambda k=user_data[i][1]:self.set_mainframe_notebook_general(k))
+                b.grid(column=2, row=i,sticky="nwes")
+            else:
+                b = Button(self.mainframePickprofile, text="No Profile",height = 2, width = 10)
+                b.grid(column=2, row=i,sticky="nwes")
+
+
+        # Create two labels
+        #label_username = tkinter.Label(self.mainframePickprofile, text="Pick a Profile:")
+        #label_username.grid(column=0, row=0)
+        #label_password = tkinter.Label(self.mainframePickprofile, text="Password")
+        #label_password.grid(column=0, row=2)
         
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
         data = [self.get_entry_username(),self.get_entry_password()]
         if(logic.username_and_password(data)):
-            self.set_mainframe_notebook_general()
+            self.set_username_id_variable([self.get_entry_username()])
+            self.add_profile_mainframe_items()
+            self.set_mainframe_notebook_profile()
         else:
             self.add_incorrect_info()
 
     #cambia el mainframe al del programa
-    def set_mainframe_notebook_general(self):
+    def set_mainframe_notebook_general(self,perfil_id):
+        print(perfil_id)
         self.notebook.add(self.mainframegeneral)
-        self.notebook.hide(self.mainframepasword)
+        self.notebook.hide(self.mainframepassword)
         self.notebook.hide(self.mainframeNewUser)
+        self.notebook.hide(self.mainframePickprofile)
 
     #cambia el mainframe al del programa
     def set_mainframe_notebook_newuser(self):
         self.notebook.add(self.mainframeNewUser)
-        self.notebook.hide(self.mainframepasword)
+        self.notebook.hide(self.mainframepassword)
         self.notebook.hide(self.mainframegeneral)
+        self.notebook.hide(self.mainframePickprofile)
 
         #cambia el mainframe al del programa
     def set_mainframe_notebook_password(self):
-        self.notebook.add(self.mainframepasword)
+        self.notebook.add(self.mainframepassword)
         self.notebook.hide(self.mainframeNewUser)
         self.notebook.hide(self.mainframegeneral)
+        self.notebook.hide(self.mainframePickprofile)
 
+        #cambia el mainframe al del programa
+    def set_mainframe_notebook_profile(self):
+        self.notebook.add(self.mainframePickprofile)
+        self.notebook.hide(self.mainframeNewUser)
+        self.notebook.hide(self.mainframegeneral)
+        self.notebook.hide(self.mainframepassword)
 
     def add_menubar(self,root):
         #add menu for adding points and lines
@@ -202,6 +249,17 @@ class Interfase:
     def get_entry_new_email(self):
         return str(self.NewEmail.get())
 
+    def set_username_id_variable(self,username_id_login):
+        self._username_id.insert(0,username_id_login)
+
+    def set_profile_id_variable(self,profile_id_login):
+        self._perfil_id.insert(0,profile_id_login)
+
+    def get_username_id_variable(self):
+        return self._username_id[0]
+
+    def get_profile_id_variable(self):
+        return self._perfil_id[0]
 
 #función main
 def main(): 
