@@ -104,3 +104,4 @@ def username_and_password(datos_usuario):
             cursor.close()
             cnx.close()
     return fueExitoso
+

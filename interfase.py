@@ -115,7 +115,6 @@ class Interfase:
 
     def add_profile_mainframe_items(self):
         user_data = logic.get_profiles_for_interfase(self.get_username_id_variable())
-        print(user_data)
         #Botón para elegir perfil
         #El user_data tiene la siguiente forma: (usuario_id,perfil_id,nombre)
         #Se asocia a cada boton el comando de cambiar de mainframe con su respectivo numero de perfil, para ello se utiliza la funcion lambda
@@ -146,7 +145,7 @@ class Interfase:
 
     #cambia el mainframe al del programa
     def set_mainframe_notebook_general(self,perfil_id):
-        print(perfil_id)
+        self.set_profile_id_variable(perfil_id)
         self.notebook.add(self.mainframegeneral)
         self.notebook.hide(self.mainframepassword)
         self.notebook.hide(self.mainframeNewUser)
