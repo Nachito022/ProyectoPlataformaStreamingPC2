@@ -177,29 +177,29 @@ insert into Artistas(nombre) values("Tom Hardy");
 insert into Artistas(nombre) values("Tom Selleck");
 insert into Artistas(nombre) values("Tom Ellis");
 
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(1,"Forrest Gump",4,4,FALSE); #1
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(2,"Mission Imposible",5,6,True); #2
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(3,"Spiderman",4,6,True); #3
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(4,"Loki",3,6,True); #4
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(5,"Venom",4,6,FALSE); #5
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(6,"Magnum PI",5,1,FALSE); #6
-insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids) values(7,"Lucifer",3,5,FALSE); #7
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Kung Fu Panda",5,7,TRUE); #8
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Kung Fu Panda 2",5,7,TRUE); #9
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Kung Fu Panda 3",5,7,TRUE); #10
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Game of Thrones",5,8,FALSE); #11
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("The Phantom Menace",5,8,TRUE); #12
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Attack of the Clones",5,8,TRUE); #13
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Revenge of the Sith",5,8,TRUE); #14
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("A New Hope",5,8,TRUE); #15
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("The Empire Strikes Back",5,8,TRUE); #16
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Return of the Jedi",5,8,TRUE); #17
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Rogue One: A Star Wars Story",5,8,TRUE); #18
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("The Mandalorian",5,8,TRUE); #19
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("The Book of Boba Fett",5,8,TRUE); #20
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Obi-Wan Kenobi",5,5,TRUE); #21
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Andor",3,8,TRUE); #22
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids) values("Ahsoka",4,8,TRUE); #23
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(1,"Forrest Gump",4,4,false,"2020:06:13"); #1
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(2,"Mission Imposible",5,6,True,"2023:06:13"); #2
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(3,"Spiderman",4,6,True,"2022:06:13"); #3
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(4,"Loki",3,6,True,"2020:01:20"); #4
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(5,"Venom",4,6,false,"2024:11:10"); #5
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(6,"Magnum PI",5,1,FALSE,"2020:06:13"); #6
+insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(7,"Lucifer",3,5,FALSE,"2024:07:29"); #7
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda",5,7,TRUE,"2024:11:10"); #8
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 2",5,7,TRUE,"2024:11:10"); #9
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 3",5,7,TRUE,"2024:11:10"); #10
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Game of Thrones",5,8,FALSE,"2019:05:02"); #11
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Phantom Menace",5,8,TRUE,"2005:11:10"); #12
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Attack of the Clones",5,8,TRUE,"2005:11:10"); #13
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Revenge of the Sith",5,8,TRUE,"2005:11:10"); #14
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("A New Hope",5,8,TRUE,"1987:11:10"); #15
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Empire Strikes Back",5,8,TRUE,"1987:11:10"); #16
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Return of the Jedi",5,8,TRUE,"1987:11:10"); #17
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Rogue One: A Star Wars Story",5,8,TRUE,"2015:11:10"); #18
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Mandalorian",5,8,TRUE,"2024:11:10"); #19
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Book of Boba Fett",5,8,TRUE,"2024:11:10"); #20
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Obi-Wan Kenobi",5,5,TRUE,"2024:11:10"); #21
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Andor",3,8,TRUE,"2024:11:10"); #22
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Ahsoka",4,8,TRUE,"2024:11:10"); #23
 
 insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(1,1,"Actor","Forrest Gump");
 insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(1,2,"Actor","Jenny Curran");
@@ -551,19 +551,24 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,15,5,1,"0:20:00","2020:05:16",5);
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,8,null,null,"0:00:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,9,null,null,"0:59:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,10,null,null,"0:55:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,12,null,null,"0:42:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,13,null,null,"0:35:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,14,null,null,"0:20:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,15,null,null,"0:10:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,11,5,4,"0:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,9,null,null,"0:59:00","2020:05:17",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,10,null,null,"0:55:00","2020:05:18",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,12,null,null,"0:42:00","2020:05:19",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,13,null,null,"0:35:00","2020:05:20",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,14,null,null,"0:20:00","2020:05:21",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,15,null,null,"0:10:00","2020:05:22",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,11,5,4,"0:20:00","2020:05:23",5);
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(9,5,null,null,"2:20:00","2020:05:16",5);
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(10,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(10,6,5,1,"0:20:00","2020:05:16",5);
 
-
-
 #insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
+
+
+SELECT C.titulo,C.fecha_publicacion
+FROM Contenido C
+where C.fecha_publicacion > "2024:11:11"
+order by C.fecha_publicacion desc;
+
