@@ -105,3 +105,71 @@ def username_and_password(datos_usuario):
             cnx.close()
     return fueExitoso
 
+def get_novedades_database(fecha_Actual="2024:11:09"):
+    config = ConfigDatabase.get_config()
+    cnx = mysql.connector.connect(**config)
+    print("Conectado",cnx.is_connected())
+    datos_contenido_novedoso = []
+    if cnx.is_connected():
+        cursor = cnx.cursor()
+        try:
+            # Inicio de las operaciones
+            datos_contenido_novedoso.append(consultas.consulta_get_contenido_novedoso(cursor,fecha_Actual))
+            # Confirma todos los cambios
+            cnx.commit()
+            print("Operaciones completadas exitosamente" )
+        except mysql.connector.Error as err:
+            # Deshacer los cambios no confirmados
+            cnx.rollback()
+            print(f"Error en el proceso: {err}")       
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            cnx.close()
+    return datos_contenido_novedoso[0]
+
+def get_continuarViendo_database(dato_perfil):
+    config = ConfigDatabase.get_config()
+    cnx = mysql.connector.connect(**config)
+    print("Conectado",cnx.is_connected())
+    datos_continuar_viendo = []
+    if cnx.is_connected():
+        cursor = cnx.cursor()
+        try:
+            # Inicio de las operaciones
+            datos_continuar_viendo.append(consultas.consulta_get_continuar_viendo(cursor,dato_perfil))
+            # Confirma todos los cambios
+            cnx.commit()
+            print("Operaciones completadas exitosamente" )
+        except mysql.connector.Error as err:
+            # Deshacer los cambios no confirmados
+            cnx.rollback()
+            print(f"Error en el proceso: {err}")       
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            cnx.close()
+    return datos_continuar_viendo[0]
+
+def get_titulos_database():
+    config = ConfigDatabase.get_config()
+    cnx = mysql.connector.connect(**config)
+    print("Conectado",cnx.is_connected())
+    datos_nombres_contenidos = []
+    if cnx.is_connected():
+        cursor = cnx.cursor()
+        try:
+            # Inicio de las operaciones
+            datos_nombres_contenidos.append(consultas.consulta_nombres_contenidos(cursor))
+            # Confirma todos los cambios
+            cnx.commit()
+            print("Operaciones completadas exitosamente" )
+        except mysql.connector.Error as err:
+            # Deshacer los cambios no confirmados
+            cnx.rollback()
+            print(f"Error en el proceso: {err}")       
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            cnx.close()
+    return datos_nombres_contenidos[0]
