@@ -19,7 +19,7 @@ class Interfase:
         self.notebook = ttk.Notebook(root)
         self.notebook.pack(pady=10)
 
-        #Se agregan 2 mainframes: uno para el login, y el otro para el programa en sí
+        #Se agregan 4 mainframes: uno para el login,uno para el programa en sí, uno para registrarse, y otro para elegir el perfil
         self.mainframepassword = ttk.Frame(self.notebook, padding="3 3 12 12")
         self.mainframepassword.grid(column=0, row=0, sticky=(N, W, E, S))
         self.mainframepassword.columnconfigure(0, weight=1)
@@ -150,6 +150,7 @@ class Interfase:
         self.notebook.hide(self.mainframepassword)
         self.notebook.hide(self.mainframeNewUser)
         self.notebook.hide(self.mainframePickprofile)
+        self.add_mainframe_items()
 
     #cambia el mainframe al del programa
     def set_mainframe_notebook_newuser(self):
@@ -226,7 +227,72 @@ class Interfase:
         else:
             self.add_user_exists_warning()
 
-    
+    def add_mainframe_items(self):
+        self.mainframeNovedades = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframeNovedades.grid(column=0, row=0, sticky=(N, W, E, S))
+        self.mainframeNovedades.columnconfigure(0, weight=1)
+        self.mainframeNovedades.rowconfigure(0, weight=1)
+
+        self.mainframeContinuarViendo = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframeContinuarViendo.grid(column=1, row=0, sticky=(N, W, E, S))
+        self.mainframeContinuarViendo.columnconfigure(0, weight=1)
+        self.mainframeContinuarViendo.rowconfigure(0, weight=1)
+
+        self.mainframeSearch = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframeSearch.grid(column=0, row=1, sticky=(N, W, E, S),columnspan=2)
+        self.mainframeSearch.columnconfigure(0, weight=1)
+        self.mainframeSearch.rowconfigure(0, weight=1)
+
+        # Create a label
+        label_txt_novedades = Label(self.mainframeNovedades, text="Novedades",font=("Helvetica", 14), fg="grey")
+        label_txt_novedades.grid(column=0, row=0)
+        label_txt_ContinuarViendo = Label(self.mainframeContinuarViendo, text="Continuar Viendo:",font=("Helvetica", 14), fg="grey")
+        label_txt_ContinuarViendo.grid(column=0, row=0)
+
+        label_txt_novedades = Text(self.mainframeNovedades,width=30,height=8,font=("Helvetica", 14), fg="grey")
+        label_txt_novedades.grid(column=0, row=1)
+        label_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=30,height=8,font=("Helvetica", 14), fg="grey")
+        label_txt_ContinuarViendo.grid(column=0, row=1)
+
+        lista_contenido_novedoso = logic.get_novedades_database()
+
+        for novedades in lista_contenido_novedoso:
+            label_txt_novedades.insert(END, f"{novedades[0]}" + '\n')
+        label_txt_novedades.config(state=DISABLED)
+
+        lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()])
+
+        if(len(lista_contenido_seguirViendo)>0):
+            for seguirViendo in lista_contenido_seguirViendo:
+                label_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}" + '\n')
+            label_txt_ContinuarViendo.config(state=DISABLED)
+        else:
+            label_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
+        label_txt_ContinuarViendo.config(state=DISABLED)
+        
+        self.lista_contenido_searchbar = logic.get_titulos_database()
+
+        # Create a label
+        search_label = Label(self.mainframeSearch, text="Search Content",font=("Helvetica", 14), fg="grey")
+        search_label.grid(column=0, row=0)
+
+        # Create an entry box
+        self.search_entry = Entry(self.mainframeSearch, font=("Helvetica", 20))
+        self.search_entry.grid(column=0, row=1)
+
+        # Create a listbox
+        self.search_list = Listbox(self.mainframeSearch, width=50)
+        self.search_list.grid(column=0, row=2)
+
+        self.search_entry.bind("<Any-KeyRelease>", self.filter)
+        self.filter()
+
+    def filter(self, event=None):
+        pattern = self.search_entry.get().lower()
+        self.search_list.delete(0, "end")
+        lista_titulos_db = [value[0] for value in self.lista_contenido_searchbar]
+        filtered = [value for value in lista_titulos_db if value.lower().startswith(pattern)]
+        self.search_list.insert("end", *filtered)
     
     #getter
     def get_entry_password(self):
