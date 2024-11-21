@@ -567,8 +567,12 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 #insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
 
 
-SELECT C.titulo,C.fecha_publicacion
-FROM Contenido C
-where C.fecha_publicacion > "2024:11:11"
-order by C.fecha_publicacion desc;
+SELECT *
+FROM Usuarios U,Perfiles P
+WHERE U.usuario_id = P.usuario_id and U.nombre = "test";
+
+SELECT *
+FROM Usuarios
+WHERE nombre = "test" and contraseña = "12345";
+
 

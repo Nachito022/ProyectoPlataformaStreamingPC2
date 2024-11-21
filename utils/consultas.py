@@ -16,14 +16,14 @@ def get_usuarios(cursor):
 def check_user_data(cursor,datos_usuario):
     # Consulta a realizar
     consulta = """
-    SELECT usuario_id
+    SELECT *
     FROM Usuarios
     WHERE nombre = %s and contraseña = %s
     """
     cursor.execute(consulta,datos_usuario)
     fila = cursor.fetchone()
     if(fila != None):
-        return fila[0]
+        return fila
     else:
         return 0
 
@@ -31,7 +31,7 @@ def check_user_data(cursor,datos_usuario):
 def consulta_nombre_user(cursor,nombre_usuario):
     # Consulta a realizar
     consulta = """
-    SELECT usuario_id
+    SELECT *
     FROM Usuarios
     WHERE nombre = %s
     """
@@ -39,7 +39,7 @@ def consulta_nombre_user(cursor,nombre_usuario):
     cursor.execute(consulta,nombre_usuario)
     fila = cursor.fetchone()
     if(fila != None):
-        return fila[0]
+        return fila
     else:
         return 0
 
@@ -54,17 +54,17 @@ def insertar_nuevo_usuario(cursor,datos):
 
 def consulta_perfiles_asociados(cursor,usuario):
     consulta = """
-    SELECT P.usuario_id,perfil_id,P.nombre
+    SELECT *
     FROM Usuarios U,Perfiles P
-    WHERE U.usuario_id = P.usuario_id and U.nombre = %s
+    WHERE U.usuario_id = P.usuario_id and U.usuario_id = %s
     """
     cursor.execute(consulta,usuario)
     filas = cursor.fetchall()
     return filas
 
-def consulta_nombres_contenidos(cursor):
+def consulta_nombres_contenidos(cursor,perfil_id):
     consulta = """
-    SELECT titulo
+    SELECT C.titulo
     FROM Contenido C
     """
     cursor.execute(consulta)

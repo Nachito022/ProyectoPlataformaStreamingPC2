@@ -116,11 +116,11 @@ class Interfase:
     def add_profile_mainframe_items(self):
         user_data = logic.get_profiles_for_interfase(self.get_username_id_variable())
         #Botón para elegir perfil
-        #El user_data tiene la siguiente forma: (usuario_id,perfil_id,nombre)
+        #El user_data tiene la siguiente forma: 
         #Se asocia a cada boton el comando de cambiar de mainframe con su respectivo numero de perfil, para ello se utiliza la funcion lambda
         for i in range(6):
             if(i<len(user_data)):
-                b = Button(self.mainframePickprofile, text=user_data[i][2],height = 2, width = 10,command=lambda k=user_data[i][1]:self.set_mainframe_notebook_general(k))
+                b = Button(self.mainframePickprofile, text=user_data[i][7],height = 2, width = 10,command=lambda k=user_data[i]:self.set_mainframe_notebook_general(k))
                 b.grid(column=2, row=i,sticky="nwes")
             else:
                 b = Button(self.mainframePickprofile, text="No Profile",height = 2, width = 10)
@@ -136,8 +136,9 @@ class Interfase:
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
         data = [self.get_entry_username(),self.get_entry_password()]
-        if(logic.username_and_password(data)):
-            self.set_username_id_variable([self.get_entry_username()])
+        usuario = logic.username_and_password(data)
+        if(len(usuario)>0):
+            self.set_username_id_variable(usuario)
             self.add_profile_mainframe_items()
             self.set_mainframe_notebook_profile()
         else:
@@ -260,20 +261,19 @@ class Interfase:
             label_txt_novedades.insert(END, f"{novedades[0]}" + '\n')
         label_txt_novedades.config(state=DISABLED)
 
-        lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()])
+        lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()[4]])
 
         if(len(lista_contenido_seguirViendo)>0):
             for seguirViendo in lista_contenido_seguirViendo:
                 label_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}" + '\n')
-            label_txt_ContinuarViendo.config(state=DISABLED)
         else:
             label_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
         label_txt_ContinuarViendo.config(state=DISABLED)
         
-        self.lista_contenido_searchbar = logic.get_titulos_database()
+        self.lista_contenido_searchbar = logic.get_titulos_database([self.get_profile_id_variable()[4]])
 
         # Create a label
-        search_label = Label(self.mainframeSearch, text="Search Content",font=("Helvetica", 14), fg="grey")
+        search_label = Label(self.mainframeSearch, text="Search:",font=("Helvetica", 14), fg="grey")
         search_label.grid(column=0, row=0)
 
         # Create an entry box
@@ -291,7 +291,7 @@ class Interfase:
         pattern = self.search_entry.get().lower()
         self.search_list.delete(0, "end")
         lista_titulos_db = [value[0] for value in self.lista_contenido_searchbar]
-        filtered = [value for value in lista_titulos_db if value.lower().startswith(pattern)]
+        filtered = [value for value in lista_titulos_db if pattern in value.lower()]
         self.search_list.insert("end", *filtered)
     
     #getter
