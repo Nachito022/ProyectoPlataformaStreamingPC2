@@ -61,3 +61,36 @@ def consulta_perfiles_asociados(cursor,usuario):
     cursor.execute(consulta,usuario)
     filas = cursor.fetchall()
     return filas
+
+def consulta_nombres_contenidos(cursor):
+    consulta = """
+    SELECT titulo
+    FROM Contenido C
+    """
+    cursor.execute(consulta)
+    filas = cursor.fetchall()
+    return filas
+
+def consulta_get_continuar_viendo(cursor,id_perfil):
+    consulta = """
+    SELECT C.titulo,H.temporada_actual,H.capitulo_actual 
+    FROM Historial H,Contenido C
+    WHERE H.contenido_id = C.contenido_id and H.perfil_id = %s
+    order by H.fecha_visto desc
+    limit 5;
+    """
+    cursor.execute(consulta,id_perfil)
+    filas = cursor.fetchall()
+    return filas
+
+def consulta_get_contenido_novedoso(cursor,fecha_Actual):
+    consulta="""
+    SELECT C.titulo,C.fecha_publicacion
+    FROM Contenido C
+    where C.fecha_publicacion > %s
+    order by C.fecha_publicacion desc
+    Limit 10;
+    """
+    cursor.execute(consulta,[fecha_Actual])
+    filas = cursor.fetchall()
+    return filas
