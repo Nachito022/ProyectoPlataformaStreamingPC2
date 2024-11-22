@@ -39,7 +39,7 @@ CREATE TABLE Formulario (
 CREATE TABLE Perfiles (
     perfil_id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT,
-    tipo_perfil ENUM('normal', 'infantil') NOT NULL,
+    tipo_perfil BOOLEAN NOT NULL, #true es para cuando el perfil es de tipo niños
     nombre varchar(150) NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id)
 );
@@ -523,24 +523,24 @@ insert into capitulos (contenido_id,temporada_id,numero_capitulo,duracion) value
 insert into capitulos (contenido_id,temporada_id,numero_capitulo,duracion) values(23,1,7,"0:24:3");
 insert into capitulos (contenido_id,temporada_id,numero_capitulo,duracion) values(23,1,8,"0:56:25");
 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nacho");    
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Nacho2"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'normal',"Julian"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Pato"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,'infantil',"Child"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,FALSE,"Nacho");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,FALSE,"Nacho2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,FALSE,"Julian"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,TRUE,"Pato"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(2,TRUE,"Child"); 
 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test1");    
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test2"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test3"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'normal',"test4"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"testChild1"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,'infantil',"testChild2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,FALSE,"test1");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,FALSE,"test2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,FALSE,"test3"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,FALSE,"test4"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,TRUE,"testChild1"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(1,TRUE,"testChild2"); 
 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico");    
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico2"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'normal',"Nico3"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'infantil',"Nico4"); 
-insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,'infantil',"Nico5"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,FALSE,"Nico");    
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,FALSE,"Nico2"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,FALSE,"Nico3"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,TRUE,"Nico4"); 
+insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,TRUE,"Nico5"); 
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,6,5,1,"0:20:00","2020:05:16",5);
@@ -567,12 +567,12 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 #insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
 
 
-SELECT *
-FROM Usuarios U,Perfiles P
-WHERE U.usuario_id = P.usuario_id and U.nombre = "test";
-
-SELECT *
-FROM Usuarios
-WHERE nombre = "test" and contraseña = "12345";
+    SELECT C.titulo
+    FROM Contenido C
+    WHERE C.apto_kids = true;
+    
+    SELECT C.titulo
+    FROM Contenido C
+    WHERE C.apto_kids = false;
 
 
