@@ -62,12 +62,17 @@ def consulta_perfiles_asociados(cursor,usuario):
     filas = cursor.fetchall()
     return filas
 
-def consulta_nombres_contenidos(cursor,perfil_id):
+def consulta_nombres_contenidos(cursor,perfil_id_kids):
     consulta = """
     SELECT C.titulo
     FROM Contenido C
+    WHERE C.apto_kids = TRUE
+    UNION
+    SELECT C.titulo
+    FROM Contenido C
+    WHERE C.apto_kids = %s
     """
-    cursor.execute(consulta)
+    cursor.execute(consulta,perfil_id_kids)
     filas = cursor.fetchall()
     return filas
 
