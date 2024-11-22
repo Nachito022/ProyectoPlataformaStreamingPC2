@@ -548,7 +548,7 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,6,5,1,"0:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,14,null,null,"2:20:00","2020:05:16",5);
-insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,15,5,1,"0:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,19,5,2,"0:20:00","2020:05:16",5);
 
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,8,null,null,"0:00:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(7,9,null,null,"0:59:00","2020:05:17",5);

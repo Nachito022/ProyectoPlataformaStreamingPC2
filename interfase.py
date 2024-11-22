@@ -240,7 +240,7 @@ class Interfase:
         self.mainframeContinuarViendo.rowconfigure(0, weight=1)
 
         self.mainframeSearch = ttk.Frame(self.notebook, padding="3 3 12 12")
-        self.mainframeSearch.grid(column=0, row=1, sticky=(N, W, E, S),columnspan=2)
+        self.mainframeSearch.grid(column=0, row=1, sticky=(N, W, E, S))
         self.mainframeSearch.columnconfigure(0, weight=1)
         self.mainframeSearch.rowconfigure(0, weight=1)
 
@@ -250,9 +250,9 @@ class Interfase:
         label_txt_ContinuarViendo = Label(self.mainframeContinuarViendo, text="Continuar Viendo:",font=("Helvetica", 14), fg="grey")
         label_txt_ContinuarViendo.grid(column=0, row=0)
 
-        label_txt_novedades = Text(self.mainframeNovedades,width=30,height=8,font=("Helvetica", 14), fg="grey")
+        label_txt_novedades = Text(self.mainframeNovedades,width=40,height=8,font=("Helvetica", 14), fg="grey")
         label_txt_novedades.grid(column=0, row=1)
-        label_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=30,height=8,font=("Helvetica", 14), fg="grey")
+        label_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=40,height=8,font=("Helvetica", 14), fg="grey")
         label_txt_ContinuarViendo.grid(column=0, row=1)
 
         lista_contenido_novedoso = logic.get_novedades_database()
@@ -265,7 +265,10 @@ class Interfase:
 
         if(len(lista_contenido_seguirViendo)>0):
             for seguirViendo in lista_contenido_seguirViendo:
-                label_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}" + '\n')
+                label_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}")
+                if(seguirViendo[1] != None):
+                    label_txt_ContinuarViendo.insert(END, f" Temporada: {seguirViendo[1]},Captítulo: {seguirViendo[2]}")
+                label_txt_ContinuarViendo.insert(END,'\n')
         else:
             label_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
         label_txt_ContinuarViendo.config(state=DISABLED)
