@@ -116,7 +116,7 @@ class Interfase:
     def add_profile_mainframe_items(self):
         user_data = logic.get_profiles_for_interfase(self.get_username_id_variable())
         #Botón para elegir perfil
-        #El user_data tiene la siguiente forma: 
+        #El user_data tiene la siguiente forma: (1, 'Test', 'test@gmail.com', '12345', 6, 1, 0, 'test1')
         #Se asocia a cada boton el comando de cambiar de mainframe con su respectivo numero de perfil, para ello se utiliza la funcion lambda
         for i in range(6):
             if(i<len(user_data)):
@@ -269,8 +269,9 @@ class Interfase:
         else:
             label_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
         label_txt_ContinuarViendo.config(state=DISABLED)
+
         
-        self.lista_contenido_searchbar = logic.get_titulos_database([self.get_profile_id_variable()[4]])
+        self.lista_contenido_searchbar = logic.get_titulos_database([self.get_profile_id_variable()[6]])
 
         # Create a label
         search_label = Label(self.mainframeSearch, text="Search:",font=("Helvetica", 14), fg="grey")
@@ -284,10 +285,13 @@ class Interfase:
         self.search_list = Listbox(self.mainframeSearch, width=50)
         self.search_list.grid(column=0, row=2)
 
+        #Se aplica la funcion de filtrado al Entry, y cuando un usuario presiona una tecla se filtra lo contenido en él
         self.search_entry.bind("<Any-KeyRelease>", self.filter)
         self.filter()
 
     def filter(self, event=None):
+        #Esta función realiza lo siguiente:
+        #Obtiene lo introducido en el entry, busca de los nombres obtenidos de la consulta si contiene el string introducido, y devuelve los valores
         pattern = self.search_entry.get().lower()
         self.search_list.delete(0, "end")
         lista_titulos_db = [value[0] for value in self.lista_contenido_searchbar]
