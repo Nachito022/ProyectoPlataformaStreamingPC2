@@ -29,6 +29,45 @@ Se utilizó SQL para diseñar una base de datos relacional que proporciona una e
 Posteriormente, se desarrolló un programa en Python para interactuar con la base de datos. El programa ofrece un conjunto de funciones que permiten realizar consultas detalladas(las pedidas por la cátedra). La integración de la programación en Python con la base de datos SQL proporciona una herramienta ágil y potente para el análisis continuo.
 ADJUNTAR EL DIAGRAMA ENTIDAD-RELACION
 
-# Funcionamiento del codigo
+# Estructura del Sistema
+### 1. Conficuración inicial
+
+El sistema comienza con la inicialización de la clase `Interfase`, que organiza las funcionalidades en cuatro áreas principales:
+ 
+ - **Inicio de sesión (Login)**: Solicita nombre de usuario y contraseña.
+ - **Plataforma principal: Acceso a las secciones de contenido, como novedades y búsqueda.
+ - **Registro de nuevos usuarios**: Permite crear cuentas y perfiles.
+ - **Selección de perfiles**: Ofrece al usuario la opción de elegir entre diferentes perfiles.
+
+Se utiliza un notebook de `ttk` para administrar las pestañas, facilitando la navegación entre las distintas funcionalidades.
+#
+### 2. Funcionalidades Principales
+### 2.1. Inicio de Sesión
+
+El sistema solicita al usuario ingresar su nombre de usuario y contraseña:
+
+- **Validación de datos**: Se llama al método `check_username_and_password `, que verifica las credenciales ingresadas contra los registros almacenados.
+- **Retroalimentación al usuario**:
+  - Mensajes de error en caso de credenciales incorrectas.
+  - Acceso a la selección de perfiles si los datos son válidos.
+
+### 2.2. Registro de Nuevos Usuarios
+
+Los usuarios pueden registrarse a travéz de la pestaña de registro haciendo click en <ins> options </ins> - <ins> Registrarte</ins>:
+
+- **Campos requeridos**: Nombre/s de usuario/s, correo electrónico, contraseña y hasta seis perfiles.
+- **Opciones avanzadas**: Cada perfil puede configurarse como "Kids" mediante un checkbox.
+- **Validación**: El método `interfase_create_new_user` asegura que los datos sean completos y únicos antes de agregarlos al sistema.
+
+### 2.3. Selección de Perfiles
+Después del inicio de sesión exitoso, el usuario elige un perfil para personalizar su experiencia:
+- Cada perfil aparece como un botón, generado dinámicamente según los datos del usuario.
+- Se navega a la interfaz principal al seleccionar un perfil.
+
+
+
+
+
+
 
 
