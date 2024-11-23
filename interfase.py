@@ -93,6 +93,7 @@ class Interfase:
         self.label_error_2.grid(column=1, row=5)
 
     def add_password_mainframe_items(self):
+    #Esta función agrega los elementos del frame donde se introducen los datos del usuario
     # Entry box to get username from users.
         self.username = StringVar(value="test")
         self.username_entry = ttk.Entry(self.mainframepassword, textvariable=self.username)
@@ -108,6 +109,7 @@ class Interfase:
         toggle_btn = ttk.Button(self.mainframepassword, text='Toggle password display', command=self.toggle_password_display)
         toggle_btn.grid(column=1, row=3)
 
+        #Botón de login
         enter_passord_btn = ttk.Button(self.mainframepassword, text='Login', command=self.check_username_and_password)
         enter_passord_btn.grid(column=3, row=2)
 
@@ -188,6 +190,7 @@ class Interfase:
         root.config(menu=menubar)
 
     def option_registro_usuario_nuevo(self):
+        #Esta funciona coloca los elementos para cuando el usuario quiere crear una nueva cuenta
         # Entry box to get username from users.
         self.Newusername = StringVar()
         self.Newusername_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.Newusername)
@@ -203,7 +206,7 @@ class Interfase:
         self.Newpassword_entry = ttk.Entry(self.mainframeNewUser, show=HIDE_CHAR, textvariable=self.Newpassword)
         self.Newpassword_entry.grid(column=1, row=3)
 
-
+        #Acá se guardan los nombres de los perfiles a crear
         self.NewPerfil1 = StringVar()
         self.NewPerfil2 = StringVar()
         self.NewPerfil3 = StringVar()
@@ -211,6 +214,7 @@ class Interfase:
         self.NewPerfil5 = StringVar()
         self.NewPerfil6 = StringVar()
 
+        #Se crean labels:
         self.Newperfil_label = Label(self.mainframeNewUser,text="Nombres de los perfiles nuevos:")
         self.Newperfil_label.grid(column=1, row=6)
         self.Newperfil_type_label = Label(self.mainframeNewUser,text="Tipo de perfil Kids:")
@@ -228,6 +232,7 @@ class Interfase:
         self.Newperfilnombre6_label = Label(self.mainframeNewUser,text="Nombre Perfil 6:")
         self.Newperfilnombre6_label.grid(column=0, row=12)
 
+        #Se crean entries para los nombres de los nuevos perfiles
         self.NewProfile1_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil1)
         self.NewProfile1_entry.grid(column=1, row=7)
         self.NewProfile2_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil2)
@@ -241,6 +246,7 @@ class Interfase:
         self.NewProfile6_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil6)
         self.NewProfile6_entry.grid(column=1, row=12)
 
+        #Como se quiere saber si el perfil será de tipo apto niños o no, se agregan unos Checkbutton para indicar el caso
         self.checkbox_value_perfil1 = BooleanVar()
         self.checkbox_value_perfil2 = BooleanVar()
         self.checkbox_value_perfil3 = BooleanVar()
@@ -267,9 +273,11 @@ class Interfase:
         toggle_new_btn = ttk.Button(self.mainframeNewUser, text='Toggle password display', command=self.toggle_password_display_newuser)
         toggle_new_btn.grid(column=1, row=4)
 
+        #Botón para confirmar la creacion del nuevo usuario, llama a la función que lo crea
         enter_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Add New User', command=self.interfase_create_new_user)
         enter_new_passord_btn.grid(column=3, row=13)
 
+        #En caso que se arrepienta
         quit_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Cancel New User', command=self.set_mainframe_notebook_password)
         quit_new_passord_btn.grid(column=0, row=4)
 
@@ -283,6 +291,7 @@ class Interfase:
         label_newpassword.grid(column=0, row=3)
 
     def combine_new_user_profile_data(self):
+        #Se buscan todos los pares de valores [nombre del perfil,tipo de perfil]
         self.datos_perfiles_nuevos.append([self.NewPerfil1.get(),self.checkbox_value_perfil1.get()])
         self.datos_perfiles_nuevos.append([self.NewPerfil2.get(),self.checkbox_value_perfil2.get()])
         self.datos_perfiles_nuevos.append([self.NewPerfil3.get(),self.checkbox_value_perfil3.get()])
@@ -309,6 +318,8 @@ class Interfase:
         self.datos_perfiles_nuevos.clear()
 
     def add_mainframe_items(self):
+        #en esta función se agregan los elementos de programa "streaming" en sí
+        #Se crean frames para: novedades, continuar viendo, buscar, y mostrar dichas búsquedas
         self.mainframeNovedades = ttk.Frame(self.notebook, padding="3 3 12 12")
         self.mainframeNovedades.grid(column=0, row=0, sticky=(N, W, E, S))
         self.mainframeNovedades.columnconfigure(0, weight=1)
@@ -329,6 +340,8 @@ class Interfase:
         self.mainframeSearchResults.columnconfigure(0, weight=1)
         self.mainframeSearchResults.rowconfigure(0, weight=1)
 
+
+        #Label
         self.label_txt_searchResult = Label(self.mainframeSearchResults, text="",font=("Helvetica", 14), fg="grey")
         self.label_txt_searchResult.grid(column=0, row=0)
 
@@ -338,19 +351,23 @@ class Interfase:
         self.label_txt_ContinuarViendo = Label(self.mainframeContinuarViendo, text="Continuar Viendo:",font=("Helvetica", 14), fg="grey")
         self.label_txt_ContinuarViendo.grid(column=0, row=0)
 
+        #Se crea objetos de tipo Text sobre los cuales se mostrará la información
         self.text_txt_novedades = Text(self.mainframeNovedades,width=30,height=8,font=("Helvetica", 14), fg="grey")
         self.text_txt_novedades.grid(column=0, row=1)
         self.text_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=50,height=8,font=("Helvetica", 14), fg="grey")
         self.text_txt_ContinuarViendo.grid(column=0, row=1)
         self.text_txt_searchResult = Text(self.mainframeSearchResults,width=50,height=8,font=("Helvetica", 14), fg="grey")
         self.text_txt_searchResult.grid(column=0, row=0)
+        #Se utiliza el grid_forget() ya que todavía no se ha buscado nada, lo cual lo esconde de la pantalla
         self.text_txt_searchResult.grid_forget()
         
-
-        
+        #Se invocan las funciones que agregan a sus respectivos frames la información coorespondiene
         self.agregar_contenido_novedoso_mainframe()
         self.agregar_continuar_viendo_mainframe()
-        
+
+        #Se buscan los titulos de la DB
+        #self.get_profile_id_variable()[6] es el tipo de perfil selecionado
+        #Devuelve el nombre del titulo junto con su respectivo id
         self.lista_contenido_searchbar = logic.get_titulos_database([self.get_profile_id_variable()[6]])
 
         # Create a label
@@ -384,16 +401,21 @@ class Interfase:
         self.search_list.insert("end", *filtered)
 
     def compute_search_result(self):
+        #Se abilita el Text para escribir y se borra todo
         self.text_txt_searchResult.config(state=NORMAL)
         self.text_txt_searchResult.delete("1.0", END)
         #Busca el primer valor de Listbox y lo devuelve
         first_entry_searchlist = self.search_list.get(0)
         id_contenido_buscado = 0
+        #Busca el nombre de multimedia sellecionado, y cuando lo encuentra, el valor asociado a éste es el id_contenido
         for contenido in self.lista_contenido_searchbar:
             if(contenido[0] == first_entry_searchlist):
                 id_contenido_buscado = contenido[1]
+        
+        #Busca informacion del contenido en la DB
         info_contenido_buscado = logic.get_info_contenido_particular(id_contenido_buscado)
 
+        #Se escribe sobre el Text:
         self.text_txt_searchResult.grid(column=0,row=0)
         self.text_txt_searchResult.insert(END,f"{first_entry_searchlist}"  + '\n')
         if(len(info_contenido_buscado)>0):
@@ -404,17 +426,23 @@ class Interfase:
                     self.text_txt_searchResult.insert(END,f"Nombre Ficticio: {person[2]} ")
                 self.text_txt_searchResult.insert(END,'\n')
         self.text_txt_searchResult.config(state=DISABLED)
+        #Finalizado, se desabilita para que no se escriba más sobre el Text
     
     def agregar_contenido_novedoso_mainframe(self):
+        #Se realiza la consulta sobre el contenido novedoso
         lista_contenido_novedoso = logic.get_novedades_database(self.get_profile_id_variable()[6])
 
+        #Se inserta en el Text
         for novedades in lista_contenido_novedoso:
             self.text_txt_novedades.insert(END, f"{novedades[0]}" + '\n')
         self.text_txt_novedades.config(state=DISABLED)
 
     def agregar_continuar_viendo_mainframe(self):
+        #Se realiza la consulta sobre si está mirando algo el perfil selecionado
+        #self.get_profile_id_variable()[4] es el id del perfil
         lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()[4]])
 
+        #Se inserta sobre el Text la data obtenido
         if(len(lista_contenido_seguirViendo)>0):
             for seguirViendo in lista_contenido_seguirViendo:
                 self.text_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}")
@@ -424,6 +452,7 @@ class Interfase:
         else:
             self.text_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
         self.text_txt_ContinuarViendo.config(state=DISABLED)
+        #Finalizado, se desabilita para que no se escriba más sobre el Text
 
 
 
