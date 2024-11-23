@@ -20,6 +20,7 @@ class Interfase:
         self.notebook.pack(pady=10)
 
         #Se agregan 4 mainframes: uno para el login,uno para el programa en sí, uno para registrarse, y otro para elegir el perfil
+        #Cada frame tiene su propio grid donde se pondrán los elementos de la interfase
         self.mainframepassword = ttk.Frame(self.notebook, padding="3 3 12 12")
         self.mainframepassword.grid(column=0, row=0, sticky=(N, W, E, S))
         self.mainframepassword.columnconfigure(0, weight=1)
@@ -43,13 +44,14 @@ class Interfase:
         #agregar los elementos como labels, buttons, etc a pantalla
         self.add_password_mainframe_items()
         
-
+        #agregar los elementos como labels, buttons, etc a pantalla registro
         self.option_registro_usuario_nuevo()
 
+        #Se agrega un label vacío que se utiliza para informar al ususario de diversas cosas
         self.label_error_success = tkinter.Label(self.mainframepassword,fg='red', text="")
         self.label_error_success.grid(column=1, row=4)
 
-        
+        #función que agrega una opción de menú para agregar un usuario
         self.add_menubar(root)
 
         for child in self.mainframepassword.winfo_children(): 
@@ -57,7 +59,7 @@ class Interfase:
         for child in self.mainframegeneral.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
 
-
+        #Se agregan los mainframe al notebook, luego escondo los necesarios.
         self.notebook.add(self.mainframepassword, text="Username and Password")
         self.notebook.add(self.mainframegeneral, text="Streaming")
         self.notebook.add(self.mainframeNewUser, text="Add New User")
@@ -71,19 +73,21 @@ class Interfase:
         show = HIDE_CHAR if not self.password_entry.cget('show') else ''
         self.password_entry.config(show=show)
     
-        #Función que cambia si se puede visualizar el password
+    #Función que cambia si se puede visualizar el password
     def toggle_password_display_newuser(self):
         show = HIDE_CHAR_NEWUSER if not self.Newpassword_entry.cget('show') else ''
         self.Newpassword_entry.config(show=show)
 
+    #setter de un label para indicar que no existe el usuario
     def add_incorrect_info(self):
         self.label_error_success.config(text="Username/Password is incorrect",fg='red')
 
+    #setter de un label para indicar que la operación fue exitoso
     def add_success_info(self):
         self.label_error_success.config(fg='green', text="User Added Correctly")
         self.label_error_2.config(text="")
 
-
+    #setter de un label para indicar que ya existe el usuario
     def add_user_exists_warning(self):
         self.label_error_2 = tkinter.Label(self.mainframeNewUser,fg='red', text="Username already exists!")
         self.label_error_2.grid(column=1, row=5)
@@ -117,6 +121,7 @@ class Interfase:
         user_data = logic.get_profiles_for_interfase(self.get_username_id_variable())
         #Botón para elegir perfil
         #El user_data tiene la siguiente forma: (1, 'Test', 'test@gmail.com', '12345', 6, 1, 0, 'test1')
+        # (usuario_id, 'nombre usuario', 'mail', 'contraseña', perfil id, usuario_id, tipo perfil kids, 'nombre perfil')
         #Se asocia a cada boton el comando de cambiar de mainframe con su respectivo numero de perfil, para ello se utiliza la funcion lambda
         for i in range(6):
             if(i<len(user_data)):
@@ -126,17 +131,14 @@ class Interfase:
                 b = Button(self.mainframePickprofile, text="No Profile",height = 2, width = 10)
                 b.grid(column=2, row=i,sticky="nwes")
 
-
-        # Create two labels
-        #label_username = tkinter.Label(self.mainframePickprofile, text="Pick a Profile:")
-        #label_username.grid(column=0, row=0)
-        #label_password = tkinter.Label(self.mainframePickprofile, text="Password")
-        #label_password.grid(column=0, row=2)
+        self.label_perfil = Label(self.mainframePickprofile, text="Por favor, eliga un perfil:")
+        self.label_perfil.grid(column=0,row=2)
         
     #Funcion para fijarse si existe el usuario
     def check_username_and_password(self):
         data = [self.get_entry_username(),self.get_entry_password()]
         usuario = logic.username_and_password(data)
+        #si existe el usuario:
         if(len(usuario)>0):
             self.set_username_id_variable(usuario)
             self.add_profile_mainframe_items()
@@ -175,7 +177,7 @@ class Interfase:
         self.notebook.hide(self.mainframepassword)
 
     def add_menubar(self,root):
-        #add menu for adding points and lines
+        #add menu for adding a register button
         menubar = tkinter.Menu(root)
         options_menu = tkinter.Menu(menubar,tearoff=False)
         options_menu.add_command(label="Registrarse",command=self.set_mainframe_notebook_newuser)
@@ -201,12 +203,69 @@ class Interfase:
         self.Newpassword_entry = ttk.Entry(self.mainframeNewUser, show=HIDE_CHAR, textvariable=self.Newpassword)
         self.Newpassword_entry.grid(column=1, row=3)
 
+
+        self.NewPerfil1 = StringVar()
+        self.NewPerfil2 = StringVar()
+        self.NewPerfil3 = StringVar()
+        self.NewPerfil4 = StringVar()
+        self.NewPerfil5 = StringVar()
+        self.NewPerfil6 = StringVar()
+
+        self.Newperfil_label = Label(self.mainframeNewUser,text="Nombres de los perfiles nuevos:")
+        self.Newperfil_label.grid(column=1, row=6)
+        self.Newperfil_type_label = Label(self.mainframeNewUser,text="Tipo de perfil Kids:")
+        self.Newperfil_type_label.grid(column=2, row=6)
+        self.Newperfilnombre1_label = Label(self.mainframeNewUser,text="Nombre Perfil 1:")
+        self.Newperfilnombre1_label.grid(column=0, row=7)
+        self.Newperfilnombre2_label = Label(self.mainframeNewUser,text="Nombre Perfil 2:")
+        self.Newperfilnombre2_label.grid(column=0, row=8)
+        self.Newperfilnombre3_label = Label(self.mainframeNewUser,text="Nombre Perfil 3:")
+        self.Newperfilnombre3_label.grid(column=0, row=9)
+        self.Newperfilnombre4_label = Label(self.mainframeNewUser,text="Nombre Perfil 4:")
+        self.Newperfilnombre4_label.grid(column=0, row=10)
+        self.Newperfilnombre5_label = Label(self.mainframeNewUser,text="Nombre Perfil 5:")
+        self.Newperfilnombre5_label.grid(column=0, row=11)
+        self.Newperfilnombre6_label = Label(self.mainframeNewUser,text="Nombre Perfil 6:")
+        self.Newperfilnombre6_label.grid(column=0, row=12)
+
+        self.NewProfile1_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil1)
+        self.NewProfile1_entry.grid(column=1, row=7)
+        self.NewProfile2_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil2)
+        self.NewProfile2_entry.grid(column=1, row=8)
+        self.NewProfile3_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil3)
+        self.NewProfile3_entry.grid(column=1, row=9)
+        self.NewProfile4_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil4)
+        self.NewProfile4_entry.grid(column=1, row=10)
+        self.NewProfile5_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil5)
+        self.NewProfile5_entry.grid(column=1, row=11)
+        self.NewProfile6_entry = ttk.Entry(self.mainframeNewUser, textvariable=self.NewPerfil6)
+        self.NewProfile6_entry.grid(column=1, row=12)
+
+        self.checkbox_value_perfil1 = BooleanVar()
+        self.checkbox_value_perfil2 = BooleanVar()
+        self.checkbox_value_perfil3 = BooleanVar()
+        self.checkbox_value_perfil4 = BooleanVar()
+        self.checkbox_value_perfil5 = BooleanVar()
+        self.checkbox_value_perfil6 = BooleanVar()
+        self.checkbox_perfil1 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil1)
+        self.checkbox_perfil1.grid(column=2, row=7)
+        self.checkbox_perfil2 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil2)
+        self.checkbox_perfil2.grid(column=2, row=8)
+        self.checkbox_perfil3 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil3)
+        self.checkbox_perfil3.grid(column=2, row=9)
+        self.checkbox_perfil4 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil4)
+        self.checkbox_perfil4.grid(column=2, row=10)
+        self.checkbox_perfil5 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil5)
+        self.checkbox_perfil5.grid(column=2, row=11)
+        self.checkbox_perfil6 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil6)
+        self.checkbox_perfil6.grid(column=2, row=12)
+
         #Botón para mostrar la contranseña, por default no se puede ver
         toggle_new_btn = ttk.Button(self.mainframeNewUser, text='Toggle password display', command=self.toggle_password_display_newuser)
         toggle_new_btn.grid(column=1, row=4)
 
         enter_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Add New User', command=self.interfase_create_new_user)
-        enter_new_passord_btn.grid(column=3, row=3)
+        enter_new_passord_btn.grid(column=3, row=13)
 
         quit_new_passord_btn = ttk.Button(self.mainframeNewUser, text='Cancel New User', command=self.set_mainframe_notebook_password)
         quit_new_passord_btn.grid(column=0, row=4)
@@ -221,6 +280,7 @@ class Interfase:
         label_newpassword.grid(column=0, row=3)
 
     def interfase_create_new_user(self):
+        #esta función crea un usuario nuevo
         datos = [self.get_entry_new_username(),self.get_entry_new_email(),self.get_entry_new_password()]
         if(logic.new_user_email_password(datos)):
             self.set_mainframe_notebook_password()
@@ -304,14 +364,29 @@ class Interfase:
         self.search_list.insert("end", *filtered)
 
     def compute_search_result(self):
+        self.text_txt_searchResult.config(state=NORMAL)
+        self.text_txt_searchResult.delete("1.0", END)
         #Busca el primer valor de Listbox y lo devuelve
         first_entry_searchlist = self.search_list.get(0)
+        id_contenido_buscado = 0
+        for contenido in self.lista_contenido_searchbar:
+            if(contenido[0] == first_entry_searchlist):
+                id_contenido_buscado = contenido[1]
+        info_contenido_buscado = logic.get_info_contenido_particular(id_contenido_buscado)
+
         self.text_txt_searchResult.grid(column=0,row=0)
-        self.text_txt_searchResult.insert(END,f"{first_entry_searchlist}")
+        self.text_txt_searchResult.insert(END,f"{first_entry_searchlist}"  + '\n')
+        if(len(info_contenido_buscado)>0):
+            self.text_txt_searchResult.insert(END,f"Tipo: {info_contenido_buscado[0][3]}"  + '\n')
+            for person in info_contenido_buscado:
+                self.text_txt_searchResult.insert(END,f"-{person[1]} {person[0]}  ")
+                if(person[2] != None):
+                    self.text_txt_searchResult.insert(END,f"Nombre Ficticio: {person[2]} ")
+                self.text_txt_searchResult.insert(END,'\n')
         self.text_txt_searchResult.config(state=DISABLED)
     
     def agregar_contenido_novedoso_mainframe(self):
-        lista_contenido_novedoso = logic.get_novedades_database()
+        lista_contenido_novedoso = logic.get_novedades_database(self.get_profile_id_variable()[6])
 
         for novedades in lista_contenido_novedoso:
             self.text_txt_novedades.insert(END, f"{novedades[0]}" + '\n')

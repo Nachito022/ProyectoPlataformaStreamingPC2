@@ -64,11 +64,11 @@ def consulta_perfiles_asociados(cursor,usuario):
 
 def consulta_nombres_contenidos(cursor,perfil_id_kids):
     consulta = """
-    SELECT C.titulo
+    SELECT C.titulo,C.contenido_id
     FROM Contenido C
     WHERE C.apto_kids = TRUE
     UNION
-    SELECT C.titulo
+    SELECT C.titulo,C.contenido_id
     FROM Contenido C
     WHERE C.apto_kids = %s
     """
@@ -88,14 +88,32 @@ def consulta_get_continuar_viendo(cursor,id_perfil):
     filas = cursor.fetchall()
     return filas
 
-def consulta_get_contenido_novedoso(cursor,fecha_Actual):
+def consulta_get_contenido_novedoso(cursor,perfil_id_kids,fecha_Actual):
+    params = {"perfil": perfil_id_kids,"fecha": fecha_Actual}
     consulta="""
     SELECT C.titulo,C.fecha_publicacion
     FROM Contenido C
-    where C.fecha_publicacion > %s
+    where C.fecha_publicacion > %(fecha)s and C.contenido_id in (SELECT C.contenido_id 
+		FROM Contenido C 
+		WHERE C.apto_kids = true 
+		union 
+		SELECT C.contenido_id 
+		FROM Contenido C 
+		WHERE C.apto_kids = %(perfil)s)
     order by C.fecha_publicacion desc
-    Limit 10;
+    Limit 10;   
     """
-    cursor.execute(consulta,[fecha_Actual])
+    cursor.execute(consulta,params)
+    filas = cursor.fetchall()
+    print(filas)
+    return filas
+
+def consulta_busqueda_info_contenido(cursor,contenido_id):
+    consulta = """
+    select a.nombre,ca.rol,ca.nom_ficticio,c2.nombre
+    from contenido c,contenido_artistas ca,categorias c2,artistas a 
+    where c.contenido_id = ca.contenido_id and c2.categoria_id =  c.categoria_id and a.artista_id = ca.artista_id and c.contenido_id = %s;
+    """
+    cursor.execute(consulta,[contenido_id])
     filas = cursor.fetchall()
     return filas

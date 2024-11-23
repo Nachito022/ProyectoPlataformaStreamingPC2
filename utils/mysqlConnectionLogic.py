@@ -105,7 +105,7 @@ def username_and_password(datos_usuario):
             cnx.close()
     return usuario[0]
 
-def get_novedades_database(fecha_Actual="2024:11:09"):
+def get_novedades_database(perfil_id,fecha_Actual="2024:11:09"):
     config = ConfigDatabase.get_config()
     cnx = mysql.connector.connect(**config)
     print("Conectado",cnx.is_connected())
@@ -114,7 +114,7 @@ def get_novedades_database(fecha_Actual="2024:11:09"):
         cursor = cnx.cursor()
         try:
             # Inicio de las operaciones
-            datos_contenido_novedoso.append(consultas.consulta_get_contenido_novedoso(cursor,fecha_Actual))
+            datos_contenido_novedoso.append(consultas.consulta_get_contenido_novedoso(cursor,perfil_id,fecha_Actual))
             # Confirma todos los cambios
             cnx.commit()
             print("Operaciones completadas exitosamente" )
@@ -173,3 +173,26 @@ def get_titulos_database(data_perfil):
             cursor.close()
             cnx.close()
     return datos_nombres_contenidos[0]
+
+def get_info_contenido_particular(data_contenido):
+    config = ConfigDatabase.get_config()
+    cnx = mysql.connector.connect(**config)
+    print("Conectado",cnx.is_connected())
+    datos_contenido = []
+    if cnx.is_connected():
+        cursor = cnx.cursor()
+        try:
+            # Inicio de las operaciones
+            datos_contenido.append(consultas.consulta_busqueda_info_contenido(cursor,data_contenido))
+            # Confirma todos los cambios
+            cnx.commit()
+            print("Operaciones completadas exitosamente" )
+        except mysql.connector.Error as err:
+            # Deshacer los cambios no confirmados
+            cnx.rollback()
+            print(f"Error en el proceso: {err}")       
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            cnx.close()
+    return datos_contenido[0]
