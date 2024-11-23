@@ -244,35 +244,32 @@ class Interfase:
         self.mainframeSearch.columnconfigure(0, weight=1)
         self.mainframeSearch.rowconfigure(0, weight=1)
 
+        self.mainframeSearchResults = ttk.Frame(self.notebook, padding="3 3 12 12")
+        self.mainframeSearchResults.grid(column=1, row=1, sticky=(N, W, E, S))
+        self.mainframeSearchResults.columnconfigure(0, weight=1)
+        self.mainframeSearchResults.rowconfigure(0, weight=1)
+
+        self.label_txt_searchResult = Label(self.mainframeSearchResults, text="",font=("Helvetica", 14), fg="grey")
+        self.label_txt_searchResult.grid(column=0, row=0)
+
         # Create a label
-        label_txt_novedades = Label(self.mainframeNovedades, text="Novedades",font=("Helvetica", 14), fg="grey")
-        label_txt_novedades.grid(column=0, row=0)
-        label_txt_ContinuarViendo = Label(self.mainframeContinuarViendo, text="Continuar Viendo:",font=("Helvetica", 14), fg="grey")
-        label_txt_ContinuarViendo.grid(column=0, row=0)
+        self.label_txt_novedades = Label(self.mainframeNovedades, text="Novedades",font=("Helvetica", 14), fg="grey")
+        self.label_txt_novedades.grid(column=0, row=0)
+        self.label_txt_ContinuarViendo = Label(self.mainframeContinuarViendo, text="Continuar Viendo:",font=("Helvetica", 14), fg="grey")
+        self.label_txt_ContinuarViendo.grid(column=0, row=0)
 
-        label_txt_novedades = Text(self.mainframeNovedades,width=40,height=8,font=("Helvetica", 14), fg="grey")
-        label_txt_novedades.grid(column=0, row=1)
-        label_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=40,height=8,font=("Helvetica", 14), fg="grey")
-        label_txt_ContinuarViendo.grid(column=0, row=1)
+        self.text_txt_novedades = Text(self.mainframeNovedades,width=30,height=8,font=("Helvetica", 14), fg="grey")
+        self.text_txt_novedades.grid(column=0, row=1)
+        self.text_txt_ContinuarViendo = Text(self.mainframeContinuarViendo,width=50,height=8,font=("Helvetica", 14), fg="grey")
+        self.text_txt_ContinuarViendo.grid(column=0, row=1)
+        self.text_txt_searchResult = Text(self.mainframeSearchResults,width=50,height=8,font=("Helvetica", 14), fg="grey")
+        self.text_txt_searchResult.grid(column=0, row=0)
+        self.text_txt_searchResult.grid_forget()
+        
 
-        lista_contenido_novedoso = logic.get_novedades_database()
-
-        for novedades in lista_contenido_novedoso:
-            label_txt_novedades.insert(END, f"{novedades[0]}" + '\n')
-        label_txt_novedades.config(state=DISABLED)
-
-        lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()[4]])
-
-        if(len(lista_contenido_seguirViendo)>0):
-            for seguirViendo in lista_contenido_seguirViendo:
-                label_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}")
-                if(seguirViendo[1] != None):
-                    label_txt_ContinuarViendo.insert(END, f" Temporada: {seguirViendo[1]},Captítulo: {seguirViendo[2]}")
-                label_txt_ContinuarViendo.insert(END,'\n')
-        else:
-            label_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
-        label_txt_ContinuarViendo.config(state=DISABLED)
-
+        
+        self.agregar_contenido_novedoso_mainframe()
+        self.agregar_continuar_viendo_mainframe()
         
         self.lista_contenido_searchbar = logic.get_titulos_database([self.get_profile_id_variable()[6]])
 
@@ -292,6 +289,11 @@ class Interfase:
         self.search_entry.bind("<Any-KeyRelease>", self.filter)
         self.filter()
 
+        #Se crea el botón de búsqueda:
+        self.search_entry_btn = Button(self.mainframeSearch,text="Search:",command=self.compute_search_result)
+        self.search_entry_btn.grid(column=0, row=3)
+
+
     def filter(self, event=None):
         #Esta función realiza lo siguiente:
         #Obtiene lo introducido en el entry, busca de los nombres obtenidos de la consulta si contiene el string introducido, y devuelve los valores
@@ -300,7 +302,36 @@ class Interfase:
         lista_titulos_db = [value[0] for value in self.lista_contenido_searchbar]
         filtered = [value for value in lista_titulos_db if pattern in value.lower()]
         self.search_list.insert("end", *filtered)
+
+    def compute_search_result(self):
+        #Busca el primer valor de Listbox y lo devuelve
+        first_entry_searchlist = self.search_list.get(0)
+        self.text_txt_searchResult.grid(column=0,row=0)
+        self.text_txt_searchResult.insert(END,f"{first_entry_searchlist}")
+        self.text_txt_searchResult.config(state=DISABLED)
     
+    def agregar_contenido_novedoso_mainframe(self):
+        lista_contenido_novedoso = logic.get_novedades_database()
+
+        for novedades in lista_contenido_novedoso:
+            self.text_txt_novedades.insert(END, f"{novedades[0]}" + '\n')
+        self.text_txt_novedades.config(state=DISABLED)
+
+    def agregar_continuar_viendo_mainframe(self):
+        lista_contenido_seguirViendo = logic.get_continuarViendo_database([self.get_profile_id_variable()[4]])
+
+        if(len(lista_contenido_seguirViendo)>0):
+            for seguirViendo in lista_contenido_seguirViendo:
+                self.text_txt_ContinuarViendo.insert(END, f"{seguirViendo[0]}")
+                if(seguirViendo[1] != None):
+                    self.text_txt_ContinuarViendo.insert(END, f" Temporada: {seguirViendo[1]},Captítulo: {seguirViendo[2]}")
+                self.text_txt_ContinuarViendo.insert(END,f" Tiempo: {seguirViendo[3]}"'\n')
+        else:
+            self.text_txt_ContinuarViendo.insert(END, "¡Te viste todo!" + '\n')
+        self.text_txt_ContinuarViendo.config(state=DISABLED)
+
+
+
     #getter
     def get_entry_password(self):
         return str(self.password.get())
