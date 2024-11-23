@@ -78,7 +78,7 @@ def consulta_nombres_contenidos(cursor,perfil_id_kids):
 
 def consulta_get_continuar_viendo(cursor,id_perfil):
     consulta = """
-    SELECT C.titulo,H.temporada_actual,H.capitulo_actual 
+    SELECT C.titulo,H.temporada_actual,H.capitulo_actual,H.tiempo_visualizado,H.valoracion
     FROM Historial H,Contenido C
     WHERE H.contenido_id = C.contenido_id and H.perfil_id = %s
     order by H.fecha_visto desc
