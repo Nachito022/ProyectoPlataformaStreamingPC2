@@ -17,6 +17,8 @@ brevemente las principales tablas:
 - **Temporada y Capítulos**: Estructuran el contenido de tipo serie, permitiendo registrar temporadas y capítulos con sus respectivas duraciones.
 Este esquema asegura la integridad de los datos mediante claves primarias y foráneas, permitiendo una interacción eficiente entre las tablas y ofreciendo una solución robusta para la gestión de datos en la plataforma.
 
+En este proceso de desarrollo, se prestó especial atención a la modularidad y la escalabilidad del código, permitiendo futuras expansiones del proyecto con facilidad.
+
 
 # Desarrollo 
 La fase inicial del proyecto se centró en el análisis detallado de los requisitos, seguido por la elaboración de un diagrama entidad-relación que sirve como guía fundamental para la implementación de la base de datos en SQL.
@@ -64,6 +66,26 @@ Después del inicio de sesión exitoso, el usuario elige un perfil para personal
 - Cada perfil aparece como un botón, generado dinámicamente según los datos del usuario.
 - Se navega a la interfaz principal al seleccionar un perfil.
 
+### 2.4. Visualización de Contenido 
+La pestaña principal incluye secciones como:
+- **Novedades**: Muestra contenido destacado.
+- **Continuar viendo**: Permite al usuario retomar contenido previamente iniciado.
+- **Búsqueda**: Los usuarios pueden buscar contenido específico.
+
+#
+### 3. Diseño de la Interfaz Gráfica
+La interfaz utiliza las siguientes herramientas de `tkinter` y `ttk`:
+- **Widgets utilizados:**
+  - `Label`, `Entry`, `Button`, `Checkbutton` para elementos interactivos.
+  -  `Notebook` para organizar las pestañas.
+- **Estilo y diseño:**
+  - Se aplican márgenes y alineaciones para asegurar una disposición visual coherente.
+  - Contraseñas protegidas mediante el uso de un carácter oculto (`*`).
+
+#
+### 4. Interactividad y Navegación
+- **Navegación dinámica:** Métodos como `set_mainframe_notebook_general` y `set_mainframe_notebook_newuser` permiten cambiar entre pestañas de forma fluida.
+- **Validaciones y retroalimentación:** Mensajes visuales (`Label`) indican errores o éxitos, mejorando la experiencia del usuario.
 
 
 
