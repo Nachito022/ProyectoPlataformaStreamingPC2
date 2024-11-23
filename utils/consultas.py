@@ -53,18 +53,18 @@ def insertar_nuevo_usuario(cursor,datos_usuario):
     cursor.execute(consulta,datos_usuario)
 
 def insertar_nuevos_perfiles(cursor,datos_perfiles,id_usuario_nuevo):
+    #Para poder insertar varios perfiles, se deben agrupar de acuerdo a su nombre y tipo junto con el id_usuario que los identifica
     nombres = [dato[0] for dato in datos_perfiles]
-    print(nombres)
     tipo_perfiles = [dato[1] for dato in datos_perfiles]
-    print(tipo_perfiles)
     perfil_completo = []
     for i in range(len(datos_perfiles)):
         perfil_completo.append([id_usuario_nuevo,nombres[i],tipo_perfiles[i]])
-    print(perfil_completo)
+    #ya teniendo todos los perfiles, se ejecuta la consulta:
     consulta_perfiles =  """INSERT INTO Perfiles(usuario_id,nombre,tipo_perfil) VALUES(%s, %s, %s)""" 
     cursor.executemany(consulta_perfiles,perfil_completo)
 
 def consulta_perfiles_asociados(cursor,usuario):
+    #esta consulta recibe un ususario y devuelve los perfiles asociados
     consulta = """
     SELECT *
     FROM Usuarios U,Perfiles P
@@ -75,6 +75,10 @@ def consulta_perfiles_asociados(cursor,usuario):
     return filas
 
 def consulta_nombres_contenidos(cursor,perfil_id_kids):
+    #Esta consulta pregunta sobre los contenidos del programa;
+    #Primero seleciona todos aquellos apto para kids, luego pregunta por los contenidos respecto al tipo de perfil actual
+    #Si el tipo de perfil es tipo kids (true), la segunda consulta devuelve lo mismo que el primero y los que se repiten se descartan con UNION
+    #Caso contrario devuelve los que sean falsos, lo cual el UNION devuelve todo el contenido
     consulta = """
     SELECT C.titulo,C.contenido_id
     FROM Contenido C
@@ -89,6 +93,7 @@ def consulta_nombres_contenidos(cursor,perfil_id_kids):
     return filas
 
 def consulta_get_continuar_viendo(cursor,id_perfil):
+    #devuelve datos de lo último visto de un perfil específico, max 5
     consulta = """
     SELECT C.titulo,H.temporada_actual,H.capitulo_actual,H.tiempo_visualizado,H.valoracion
     FROM Historial H,Contenido C
@@ -101,6 +106,8 @@ def consulta_get_continuar_viendo(cursor,id_perfil):
     return filas
 
 def consulta_get_contenido_novedoso(cursor,perfil_id_kids,fecha_Actual):
+    #esta consulta devuelve los titulos del contenido que sea más nuevo respecto a una fecha dada.
+    #La subquery pregunta si el contenido es apta para el perfil sellecionada
     params = {"perfil": perfil_id_kids,"fecha": fecha_Actual}
     consulta="""
     SELECT C.titulo,C.fecha_publicacion
@@ -117,10 +124,10 @@ def consulta_get_contenido_novedoso(cursor,perfil_id_kids,fecha_Actual):
     """
     cursor.execute(consulta,params)
     filas = cursor.fetchall()
-    print(filas)
     return filas
 
 def consulta_busqueda_info_contenido(cursor,contenido_id):
+    #Esta consulta devuelve información relevante a un contenido como los actores/directores
     consulta = """
     select a.nombre,ca.rol,ca.nom_ficticio,c2.nombre
     from contenido c,contenido_artistas ca,categorias c2,artistas a 
