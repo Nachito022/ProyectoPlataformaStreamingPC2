@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS Contenido;
 DROP TABLE IF EXISTS Categorias;
 DROP TABLE IF EXISTS Artistas;
 DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS Sagas;
 
 
 
@@ -50,6 +51,12 @@ CREATE TABLE Categorias(
     nombre VARCHAR(255)
 );
 
+create table Sagas (
+	saga_id int NOT null auto_increment,
+	nombre_saga varchar(255) not null,
+	primary key (saga_id)
+);
+
 -- Tabla Contenido
 CREATE TABLE Contenido (
     contenido_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,7 +65,9 @@ CREATE TABLE Contenido (
     categoria_id INT,
     apto_kids BOOL,
     fecha_publicacion DATE,
-    FOREIGN KEY (categoria_id) REFERENCES Categorias(categoria_id)
+    saga_id int,
+    FOREIGN KEY (categoria_id) REFERENCES Categorias(categoria_id),
+    FOREIGN KEY (saga_id) REFERENCES Sagas(saga_id)
 );
 
 -- Tabla Progreso de Contenido
@@ -128,6 +137,9 @@ CREATE TABLE Capitulos (
     FOREIGN KEY (contenido_id,temporada_id) REFERENCES Temporada(contenido_id,temporada_id)
 );
 
+
+
+
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(1,'Test', 'test@gmail.com', "12345");
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(2,'Nacho', 'nachoferre22@gmail.com', "123");
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(3,'Nico', 'nicocricco@gmail.com', "123");
@@ -145,6 +157,8 @@ insert into categorias(nombre) values("RomCom"); #5
 insert into categorias(nombre) values("Accion"); #6
 insert into categorias(nombre) values("Animada"); #7
 insert into categorias(nombre) values("Fantasía"); #8
+
+insert into Sagas(nombre_saga) values("Star Wars");
 
 insert into Artistas(nombre,artista_id) values("Tom Hanks",1);
 insert into Artistas(nombre,artista_id) values("Robin Wright",2);
@@ -188,18 +202,18 @@ insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacio
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 2",5,7,TRUE,"2024:11:10"); #9
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 3",5,7,TRUE,"2024:11:10"); #10
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Game of Thrones",5,8,FALSE,"2019:05:02"); #11
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Phantom Menace",5,8,TRUE,"2005:11:10"); #12
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Attack of the Clones",5,8,TRUE,"2005:11:10"); #13
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Revenge of the Sith",5,8,TRUE,"2005:11:10"); #14
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("A New Hope",5,8,TRUE,"1987:11:10"); #15
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Empire Strikes Back",5,8,TRUE,"1987:11:10"); #16
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Return of the Jedi",5,8,TRUE,"1987:11:10"); #17
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Rogue One: A Star Wars Story",5,8,TRUE,"2015:11:10"); #18
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Mandalorian",5,8,TRUE,"2024:11:10"); #19
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("The Book of Boba Fett",5,8,TRUE,"2024:11:10"); #20
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Obi-Wan Kenobi",5,5,TRUE,"2024:11:10"); #21
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Andor",3,8,TRUE,"2024:11:10"); #22
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Ahsoka",4,8,TRUE,"2024:11:10"); #23
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("The Phantom Menace",5,8,TRUE,"2005:11:10",1); #12
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Attack of the Clones",5,8,TRUE,"2005:11:10",1); #13
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Revenge of the Sith",5,8,TRUE,"2005:11:10",1); #14
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("A New Hope",5,8,TRUE,"1987:11:10",1); #15
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("The Empire Strikes Back",5,8,TRUE,"1987:11:10",1); #16
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Return of the Jedi",5,8,TRUE,"1987:11:10",1); #17
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Rogue One: A Star Wars Story",5,8,TRUE,"2015:11:10",1); #18
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("The Mandalorian",5,8,TRUE,"2024:11:10",1); #19
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("The Book of Boba Fett",5,8,TRUE,"2024:11:10",1); #20
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Obi-Wan Kenobi",5,5,TRUE,"2024:11:10",1); #21
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Andor",3,8,TRUE,"2024:11:10",1); #22
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Ahsoka",4,8,TRUE,"2024:11:10",1); #23
 
 insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(1,1,"Actor","Forrest Gump");
 insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(1,2,"Actor","Jenny Curran");
@@ -565,14 +579,5 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(10,6,5,1,"0:20:00","2020:05:16",5);
 
 #insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
-
-
-    SELECT C.titulo
-    FROM Contenido C
-    WHERE C.apto_kids = true;
-    
-    SELECT C.titulo
-    FROM Contenido C
-    WHERE C.apto_kids = false;
 
 
