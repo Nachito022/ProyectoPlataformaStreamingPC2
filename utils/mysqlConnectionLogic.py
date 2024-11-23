@@ -34,7 +34,7 @@ def add_user_logic(cursor,datos_usuario):
         consultas.insertar_nuevo_usuario(cursor,datos_usuario)
         return True
         
-def new_user_email_password(datos_usuario):
+def new_user_email_password(datos_usuario,datos_perfiles_nuevos):
     config = ConfigDatabase.get_config()
     cnx = mysql.connector.connect(**config)
     print("Conectado",cnx.is_connected())
@@ -45,6 +45,10 @@ def new_user_email_password(datos_usuario):
             # Inicio de las operaciones
             fueExitoso = add_user_logic(cursor,datos_usuario)
             # Confirma todos los cambios
+            cnx.commit()
+            user_id_nuevo = consultas.check_user_data(cursor,[datos_usuario[0],datos_usuario[2]])[0]
+            print(datos_usuario)
+            consultas.insertar_nuevos_perfiles(cursor,datos_perfiles_nuevos,user_id_nuevo)
             cnx.commit()
             print("Operaciones completadas exitosamente" )
         except mysql.connector.Error as err:

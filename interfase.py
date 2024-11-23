@@ -85,7 +85,7 @@ class Interfase:
     #setter de un label para indicar que la operación fue exitoso
     def add_success_info(self):
         self.label_error_success.config(fg='green', text="User Added Correctly")
-        self.label_error_2.config(text="")
+        #self.label_error_2.config(text="")
 
     #setter de un label para indicar que ya existe el usuario
     def add_user_exists_warning(self):
@@ -260,6 +260,9 @@ class Interfase:
         self.checkbox_perfil6 = ttk.Checkbutton(self.mainframeNewUser,text="Tipo Kids", variable=self.checkbox_value_perfil6)
         self.checkbox_perfil6.grid(column=2, row=12)
 
+        #En esta lista se guardarán el nombre del perfil con su respectivo tipo
+        self.datos_perfiles_nuevos = []
+
         #Botón para mostrar la contranseña, por default no se puede ver
         toggle_new_btn = ttk.Button(self.mainframeNewUser, text='Toggle password display', command=self.toggle_password_display_newuser)
         toggle_new_btn.grid(column=1, row=4)
@@ -279,14 +282,31 @@ class Interfase:
         label_newpassword = tkinter.Label(self.mainframeNewUser, text="New Password")
         label_newpassword.grid(column=0, row=3)
 
+    def combine_new_user_profile_data(self):
+        self.datos_perfiles_nuevos.append([self.NewPerfil1.get(),self.checkbox_value_perfil1.get()])
+        self.datos_perfiles_nuevos.append([self.NewPerfil2.get(),self.checkbox_value_perfil2.get()])
+        self.datos_perfiles_nuevos.append([self.NewPerfil3.get(),self.checkbox_value_perfil3.get()])
+        self.datos_perfiles_nuevos.append([self.NewPerfil4.get(),self.checkbox_value_perfil4.get()])
+        self.datos_perfiles_nuevos.append([self.NewPerfil5.get(),self.checkbox_value_perfil5.get()])
+        self.datos_perfiles_nuevos.append([self.NewPerfil6.get(),self.checkbox_value_perfil6.get()])
+        #luego de buscar todos los valores, se filtra aquellos que tienen el nombre vacío, porque así no se crean perfiles vacíos
+        for i in range(6):
+            if(self.datos_perfiles_nuevos[5-i][0] == ""):
+                self.datos_perfiles_nuevos.pop(5-i)
+
+
     def interfase_create_new_user(self):
         #esta función crea un usuario nuevo
-        datos = [self.get_entry_new_username(),self.get_entry_new_email(),self.get_entry_new_password()]
-        if(logic.new_user_email_password(datos)):
+        datos_usuario = [self.get_entry_new_username(),self.get_entry_new_email(),self.get_entry_new_password()]
+        #for i in range(6):
+        self.combine_new_user_profile_data()
+        if("" not in datos_usuario and logic.new_user_email_password(datos_usuario,self.datos_perfiles_nuevos)):
             self.set_mainframe_notebook_password()
             self.add_success_info()
         else:
             self.add_user_exists_warning()
+        #se borra los contenidos de la lista para el caso que el usuario desea agregar otra perosna más
+        self.datos_perfiles_nuevos.clear()
 
     def add_mainframe_items(self):
         self.mainframeNovedades = ttk.Frame(self.notebook, padding="3 3 12 12")

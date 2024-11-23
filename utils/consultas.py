@@ -48,9 +48,21 @@ def insertar_en_formulario(cursor,datos):
     consulta =  """INSERT INTO Formulario(usuario_id,exitoso,fecha_hora) VALUES(%s, %s, %s)""" 
     cursor.execute(consulta,datos)
 
-def insertar_nuevo_usuario(cursor,datos):
+def insertar_nuevo_usuario(cursor,datos_usuario):
     consulta =  """INSERT INTO Usuarios(nombre,email,contraseña) VALUES(%s, %s, %s)""" 
-    cursor.execute(consulta,datos)
+    cursor.execute(consulta,datos_usuario)
+
+def insertar_nuevos_perfiles(cursor,datos_perfiles,id_usuario_nuevo):
+    nombres = [dato[0] for dato in datos_perfiles]
+    print(nombres)
+    tipo_perfiles = [dato[1] for dato in datos_perfiles]
+    print(tipo_perfiles)
+    perfil_completo = []
+    for i in range(len(datos_perfiles)):
+        perfil_completo.append([id_usuario_nuevo,nombres[i],tipo_perfiles[i]])
+    print(perfil_completo)
+    consulta_perfiles =  """INSERT INTO Perfiles(usuario_id,nombre,tipo_perfil) VALUES(%s, %s, %s)""" 
+    cursor.executemany(consulta_perfiles,perfil_completo)
 
 def consulta_perfiles_asociados(cursor,usuario):
     consulta = """
