@@ -19,6 +19,7 @@ Este esquema asegura la integridad de los datos mediante claves primarias y for�
 
 En este proceso de desarrollo, se prestó especial atención a la modularidad y la escalabilidad del código, permitiendo futuras expansiones del proyecto con facilidad.
 
+![Diagrama DBeaver](IMG/plataforma_streaming.png)
 
 # Desarrollo 
 La fase inicial del proyecto se centró en el análisis detallado de los requisitos, seguido por la elaboración de un diagrama entidad-relación que sirve como guía fundamental para la implementación de la base de datos en SQL.
