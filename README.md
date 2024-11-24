@@ -1,3 +1,9 @@
+# Datos importante:
+
+El programa funciona mediante la ejecución del archivo "interfase.py". Para la configuración de la base de datos, se debe introducir los datos correspondientes 
+en el archivo "ConfigDatabase.py" en la carpeta de utils (utils/ConfigDatabase.py). Allí se encuentra una función en la cual deben estar introducidos los datos 
+correspondientes.
+
 # Plataforma de streaming para peliculas y series en Python y MySQL
 
 El presente proyecto consiste en el diseño e implementación de una base de datos para una plataforma de streaming de 
@@ -38,7 +44,7 @@ ADJUNTAR EL DIAGRAMA ENTIDAD-RELACION
 El sistema comienza con la inicialización de la clase `Interfase`, que organiza las funcionalidades en cuatro áreas principales:
  
  - **Inicio de sesión (Login)**: Solicita nombre de usuario y contraseña.
- - **Plataforma principal: Acceso a las secciones de contenido, como novedades y búsqueda.
+ - **Plataforma principal**: Acceso a las secciones de contenido, como novedades y búsqueda.
  - **Registro de nuevos usuarios**: Permite crear cuentas y perfiles.
  - **Selección de perfiles**: Ofrece al usuario la opción de elegir entre diferentes perfiles.
 
