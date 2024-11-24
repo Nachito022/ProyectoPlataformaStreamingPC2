@@ -23,10 +23,6 @@ brevemente las principales tablas:
 - **Temporada y Capítulos**: Estructuran el contenido de tipo serie, permitiendo registrar temporadas y capítulos con sus respectivas duraciones.
 Este esquema asegura la integridad de los datos mediante claves primarias y foráneas, permitiendo una interacción eficiente entre las tablas y ofreciendo una solución robusta para la gestión de datos en la plataforma.
 
-En este proceso de desarrollo, se prestó especial atención a la modularidad y la escalabilidad del código, permitiendo futuras expansiones del proyecto con facilidad.
-
-![Diagrama DBeaver](IMG/plataforma_streaming.png)
-
 # Desarrollo 
 La fase inicial del proyecto se centró en el análisis detallado de los requisitos, seguido por la elaboración de un diagrama entidad-relación que sirve como guía fundamental para la implementación de la base de datos en SQL.
 
@@ -36,7 +32,10 @@ Nos centramos en la creación de un sistema robusto que permitiera la gestión e
 Se utilizó SQL para diseñar una base de datos relacional que proporciona una estructura organizada para el almacenamiento de información. Esta base de datos fue elaborada con tablas específicas para cada tipo de dato, asegurando coherencia y facilitando la realización de consultas complejas.
 
 Posteriormente, se desarrolló un programa en Python para interactuar con la base de datos. El programa ofrece un conjunto de funciones que permiten realizar consultas detalladas(las pedidas por la cátedra). La integración de la programación en Python con la base de datos SQL proporciona una herramienta ágil y potente para el análisis continuo.
-ADJUNTAR EL DIAGRAMA ENTIDAD-RELACION
+
+En este proceso de desarrollo, se prestó especial atención a la modularidad y la escalabilidad del código, permitiendo futuras expansiones del proyecto con facilidad.
+
+![Diagrama DBeaver](IMG/plataforma_streaming.png)
 
 # Estructura del Sistema
 ### 1. Conficuración inicial
