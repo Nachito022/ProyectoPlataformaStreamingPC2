@@ -1,9 +1,3 @@
-# Datos importante:
-
-El programa funciona mediante la ejecución del archivo "interfase.py". Para la configuración de la base de datos, se debe introducir los datos correspondientes 
-en el archivo "ConfigDatabase.py" en la carpeta de utils (utils/ConfigDatabase.py). Allí se encuentra una función en la cual deben estar introducidos los datos 
-correspondientes.
-
 # Plataforma de streaming para peliculas y series en Python y MySQL
 
 El presente proyecto consiste en el diseño e implementación de una base de datos para una plataforma de streaming de 
@@ -92,6 +86,15 @@ La interfaz utiliza las siguientes herramientas de `tkinter` y `ttk`:
 ### 4. Interactividad y Navegación
 - **Navegación dinámica:** Métodos como `set_mainframe_notebook_general` y `set_mainframe_notebook_newuser` permiten cambiar entre pestañas de forma fluida.
 - **Validaciones y retroalimentación:** Mensajes visuales (`Label`) indican errores o éxitos, mejorando la experiencia del usuario.
+
+# Pasos para una correcta ejecución
+## Ejecutar archivo SQL
+En la carpeta contenedora del proyecto existe el archivo "Plataforma_streaming DB" el cual cuenta con el código para generar la base de datos y todas las tablas además de una cantidad minima de datos para la ejecucion y la prueba del programa. Es importante aclarar que se debe respetar el orden de ejecución de este archivo para un correcto funcionamiento.
+
+## Ejecutar programa en Python
+Por ultimo ejecutar el archivo "interfase.py". Para la configuración de la base de datos, se debe introducir los datos correspondientes 
+en el archivo "ConfigDatabase.py" en la carpeta de utils (utils/ConfigDatabase.py). Allí se encuentra una función en la cual deben estar introducidos los datos 
+correspondientes.
 
 
 
