@@ -54,6 +54,8 @@ El sistema solicita al usuario ingresar su nombre de usuario y contraseña:
   - Mensajes de error en caso de credenciales incorrectas.
   - Acceso a la selección de perfiles si los datos son válidos.
 
+![pagina contraseña](IMG/plataforma_streaming.png)
+
 ### 2.2. Registro de Nuevos Usuarios
 
 Los usuarios pueden registrarse a travéz de la pestaña de registro haciendo click en <ins> options </ins> - <ins> Registrarte</ins>:
@@ -61,6 +63,8 @@ Los usuarios pueden registrarse a travéz de la pestaña de registro haciendo cl
 - **Campos requeridos**: Nombre/s de usuario/s, correo electrónico, contraseña y hasta seis perfiles.
 - **Opciones avanzadas**: Cada perfil puede configurarse como "Kids" mediante un checkbox.
 - **Validación**: El método `interfase_create_new_user` asegura que los datos sean completos y únicos antes de agregarlos al sistema.
+
+![pagina elegir perfil](IMG/pagina_elegir_perfil.png)
 
 ### 2.3. Selección de Perfiles
 Después del inicio de sesión exitoso, el usuario elige un perfil para personalizar su experiencia:
