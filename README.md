@@ -54,7 +54,7 @@ El sistema solicita al usuario ingresar su nombre de usuario y contraseña:
   - Mensajes de error en caso de credenciales incorrectas.
   - Acceso a la selección de perfiles si los datos son válidos.
 
-![pagina contraseña](IMG/plataforma_streaming.png)
+![pagina contraseña](IMG/pagina_contraseña.png)
 
 ### 2.2. Registro de Nuevos Usuarios
 
@@ -64,18 +64,23 @@ Los usuarios pueden registrarse a travéz de la pestaña de registro haciendo cl
 - **Opciones avanzadas**: Cada perfil puede configurarse como "Kids" mediante un checkbox.
 - **Validación**: El método `interfase_create_new_user` asegura que los datos sean completos y únicos antes de agregarlos al sistema.
 
-![pagina elegir perfil](IMG/pagina_elegir_perfil.png)
+![pagina_nuevo_usuario](IMG/pagina_nuevo_usuario.png)
 
 ### 2.3. Selección de Perfiles
 Después del inicio de sesión exitoso, el usuario elige un perfil para personalizar su experiencia:
 - Cada perfil aparece como un botón, generado dinámicamente según los datos del usuario.
 - Se navega a la interfaz principal al seleccionar un perfil.
 
+![pagina_elegir_perfil](IMG/pagina_elegir_perfil.png)
+
 ### 2.4. Visualización de Contenido 
 La pestaña principal incluye secciones como:
 - **Novedades**: Muestra contenido destacado.
 - **Continuar viendo**: Permite al usuario retomar contenido previamente iniciado.
 - **Búsqueda**: Los usuarios pueden buscar contenido específico.
+
+![pagina_principal_sin_busqueda](IMG/pagina_principal_sin_busqueda.png)
+![pagina_principal_con_busqueda](IMG/pagina_principal_con_busqueda.png)
 
 #
 ### 3. Diseño de la Interfaz Gráfica
