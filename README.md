@@ -30,6 +30,7 @@ Posteriormente, se desarrolló un programa en Python para interactuar con la bas
 
 En este proceso de desarrollo, se prestó especial atención a la modularidad y la escalabilidad del código, permitiendo futuras expansiones del proyecto con facilidad.
 
+![EntidadRelacion](IMG/EntidadRelacion.png)
 ![Diagrama DBeaver](IMG/plataforma_streaming.png)
 
 # Estructura del Sistema
