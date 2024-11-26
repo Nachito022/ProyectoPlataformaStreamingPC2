@@ -7,10 +7,10 @@ brevemente las principales tablas:
 
 # Requerimientos:
 Se deben tener las siguientes librerías instaladas:
-- datetime
-- mysql.connector
-- tkinter
-
+- **datetime**: pip install DateTime
+- **mysql.connector**: pip install mysql-connector-python
+- **tkinter**: pip install tk
+Con estas liberías se corre el programa.
 
 - **Usuarios**: Almacena la información básica de los usuarios registrados, como nombre, correo electrónico y contraseña.
 - **Formulario**: Registra los intentos de autenticación realizados por los usuarios, indicando si fueron exitosos.
