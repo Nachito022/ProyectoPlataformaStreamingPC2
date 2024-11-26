@@ -9,7 +9,6 @@ Se deben tener las siguientes librerías instaladas:
 - **datetime**: pip install DateTime
 - **mysql.connector**: pip install mysql-connector-python
 - **tkinter**: pip install tk
-Con estas liberías se corre el programa.
 
 # Plataforma de streaming para peliculas y series en Python y MySQL
 
