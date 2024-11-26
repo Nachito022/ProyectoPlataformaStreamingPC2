@@ -5,6 +5,13 @@ contenido audiovisual, en la materia Principio de Computadoras II. La estructura
 tablas relacionadas, optimizando la gestión de usuarios, contenido, y su interacción. A continuación, se describen 
 brevemente las principales tablas:
 
+# Requerimientos:
+Se deben tener las siguientes librerías instaladas:
+- datetime
+- mysql.connector
+- tkinter
+
+
 - **Usuarios**: Almacena la información básica de los usuarios registrados, como nombre, correo electrónico y contraseña.
 - **Formulario**: Registra los intentos de autenticación realizados por los usuarios, indicando si fueron exitosos.
 - **Perfiles**: Permite a los usuarios crear perfiles personalizados, diferenciando entre perfiles estándar y perfiles para niños.
