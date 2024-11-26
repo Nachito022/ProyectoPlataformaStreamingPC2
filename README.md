@@ -1,9 +1,8 @@
-# Plataforma de streaming para peliculas y series en Python y MySQL
+# Datos importante:
 
-El presente proyecto consiste en el diseño e implementación de una base de datos para una plataforma de streaming de 
-contenido audiovisual, en la materia Principio de Computadoras II. La estructura de la base de datos se organiza en varias 
-tablas relacionadas, optimizando la gestión de usuarios, contenido, y su interacción. A continuación, se describen 
-brevemente las principales tablas:
+El programa funciona mediante la ejecución del archivo "interfase.py". Para la configuración de la base de datos, se debe introducir los datos correspondientes 
+en el archivo "ConfigDatabase.py" en la carpeta de utils (utils/ConfigDatabase.py). Allí se encuentra una función en la cual deben estar introducidos los datos 
+correspondientes.
 
 # Requerimientos:
 Se deben tener las siguientes librerías instaladas:
@@ -11,6 +10,13 @@ Se deben tener las siguientes librerías instaladas:
 - **mysql.connector**: pip install mysql-connector-python
 - **tkinter**: pip install tk
 Con estas liberías se corre el programa.
+
+# Plataforma de streaming para peliculas y series en Python y MySQL
+
+El presente proyecto consiste en el diseño e implementación de una base de datos para una plataforma de streaming de 
+contenido audiovisual, en la materia Principio de Computadoras II. La estructura de la base de datos se organiza en varias 
+tablas relacionadas, optimizando la gestión de usuarios, contenido, y su interacción. A continuación, se describen 
+brevemente las principales tablas:
 
 - **Usuarios**: Almacena la información básica de los usuarios registrados, como nombre, correo electrónico y contraseña.
 - **Formulario**: Registra los intentos de autenticación realizados por los usuarios, indicando si fueron exitosos.
