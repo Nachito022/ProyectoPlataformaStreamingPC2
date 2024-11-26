@@ -309,9 +309,10 @@ class Interfase:
         datos_usuario = [self.get_entry_new_username(),self.get_entry_new_email(),self.get_entry_new_password()]
         #for i in range(6):
         self.combine_new_user_profile_data()
-        if("" not in datos_usuario and logic.new_user_email_password(datos_usuario,self.datos_perfiles_nuevos)):
-            self.set_mainframe_notebook_password()
-            self.add_success_info()
+        if("" not in datos_usuario):
+            if(logic.new_user_email_password(datos_usuario,self.datos_perfiles_nuevos)):
+                self.set_mainframe_notebook_password()
+                self.add_success_info()
         else:
             self.add_user_exists_warning()
         #se borra los contenidos de la lista para el caso que el usuario desea agregar otra perosna más
