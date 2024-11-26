@@ -15,7 +15,8 @@ brevemente las principales tablas:
 - **Artistas**: Almacena los artistas y sus datos relevantes.
 - **Contenido_Artistas**: Gestionan información sobre los artistas involucrados en el contenido y su relación con el mismo, incluyendo roles y nombres ficticios.
 - **Películas y Series**: Diferencian el contenido según su tipo, con detalles adicionales como duración en el caso de las películas.
-- **Temporada y Capítulos**: Estructuran el contenido de tipo serie, permitiendo registrar temporadas y capítulos con sus respectivas duraciones.
+- **Temporada**: Esta tabla contiene las temporadas de una serie
+- **Capítulos**: Registran capítulos con los datos correspondientes.
 Este esquema asegura la integridad de los datos mediante claves primarias y foráneas, permitiendo una interacción eficiente entre las tablas y ofreciendo una solución robusta para la gestión de datos en la plataforma.
 
 # Desarrollo 
