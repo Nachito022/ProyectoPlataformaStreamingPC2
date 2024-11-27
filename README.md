@@ -2,7 +2,7 @@
 
 El programa funciona mediante la ejecución del archivo "interfase.py". Para la configuración de la base de datos, se debe introducir los datos correspondientes 
 en el archivo "ConfigDatabase.py" en la carpeta de utils (utils/ConfigDatabase.py). Allí se encuentra una función en la cual deben estar introducidos los datos 
-correspondientes.
+correspondientes. EL programa cuenta con un usuario por defecto utilizado como prueba, llamado "Test". En caso que si quisiera ingresar con otro ususario, se ingresa con los datos correspondientes.
 
 # Requerimientos:
 Se deben tener las siguientes librerías instaladas:
@@ -29,7 +29,7 @@ brevemente las principales tablas:
 - **Películas y Series**: Diferencian el contenido según su tipo, con detalles adicionales como duración en el caso de las películas.
 - **Temporada**: Esta tabla contiene las temporadas de una serie
 - **Capítulos**: Registran capítulos con los datos correspondientes.
-Este esquema asegura la integridad de los datos mediante claves primarias y foráneas, permitiendo una interacción eficiente entre las tablas y ofreciendo una solución robusta para la gestión de datos en la plataforma.
+Este esquema asegura la integridad de los datos mediante claves primarias y foráneas, permitiendo una interacción eficiente entre las tablas y ofreciendo una solución robusta para la gestión de datos en la plataforma. La base de datos adjunta tiene la cantidad de información necesaria para hacer funcionar el programa, con diversos perfiles con historiales asociados. 
 
 # Desarrollo 
 La fase inicial del proyecto se centró en el análisis detallado de los requisitos, seguido por la elaboración de un diagrama entidad-relación que sirve como guía fundamental para la implementación de la base de datos en SQL.
