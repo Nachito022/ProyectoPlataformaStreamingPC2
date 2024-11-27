@@ -2,6 +2,8 @@
 #CREATE DATABASE Plataforma_streaming; 
 USE Plataforma_streaming;
 
+-- Esto elimina las tablas si exiten, esto se utilizó para no tener que
+-- eliminar las tablas una por una a la hora de hacer cambios. 
 DROP TABLE IF EXISTS Formulario;
 DROP TABLE IF EXISTS Historial;
 DROP TABLE IF EXISTS Perfiles;
@@ -50,7 +52,7 @@ CREATE TABLE Categorias(
 	categoria_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nombre VARCHAR(255)
 );
-
+-- Tabla sagas
 create table Sagas (
 	saga_id int NOT null auto_increment,
 	nombre_saga varchar(255) not null,
@@ -139,6 +141,7 @@ CREATE TABLE Capitulos (
 
 
 
+-- se insertaron datos minimos para un uso de prueba del proyecto
 
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(1,'Test', 'test@gmail.com', "12345");
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(2,'Nacho', 'nachoferre22@gmail.com', "123");
