@@ -632,7 +632,3 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,15,null,null,"0:10:00","2020:05:22",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,11,5,4,"0:20:00","2020:05:23",5);
 
-
-
-
-
