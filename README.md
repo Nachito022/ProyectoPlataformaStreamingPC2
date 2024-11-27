@@ -93,8 +93,8 @@ La pestaña principal incluye secciones como:
 - **Continuar viendo**: Permite al usuario retomar contenido previamente iniciado.
 - **Búsqueda**: Los usuarios pueden buscar contenido específico.
 
-![pagina_principal_sin_busqueda](IMG/pagina_principal_sin_busqueda.png)
-![pagina_principal_con_busqueda](IMG/pagina_principal_con_busqueda.png)
+![pagina_principal_sin_busqueda](IMG/pagina_principal_con_pelicula.jpeg)
+![pagina_principal_con_busqueda](IMG/pagina_principal_con_serie.jpeg)
 
 #
 ### 3. Diseño de la Interfaz Gráfica
