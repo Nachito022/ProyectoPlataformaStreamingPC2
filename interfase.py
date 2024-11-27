@@ -419,9 +419,22 @@ class Interfase:
         #Se escribe sobre el Text:
         self.text_txt_searchResult.grid(column=0,row=0)
         self.text_txt_searchResult.insert(END,f"{first_entry_searchlist}"  + '\n')
-        if(len(info_contenido_buscado)>0):
-            self.text_txt_searchResult.insert(END,f"Tipo: {info_contenido_buscado[0][3]}"  + '\n')
-            for person in info_contenido_buscado:
+        
+        #insertar info de pelicula/serie
+        if(info_contenido_buscado[1]!=None):
+            #Es una pelicula:
+            self.text_txt_searchResult.insert(END,"Película" + '\n')
+            self.text_txt_searchResult.insert(END,f"Duracion: {info_contenido_buscado[1][0]}"  + '\n')
+        else:
+            #Es una serie
+            self.text_txt_searchResult.insert(END,"Serie" + '\n')
+            self.text_txt_searchResult.insert(END,f"Cantidad de Capitulos: {info_contenido_buscado[2][0]}"  + '\n')
+            self.text_txt_searchResult.insert(END,f"Duracion Promedio: {int(info_contenido_buscado[2][1])} minutos"  + '\n')
+        
+        if(len(info_contenido_buscado[0])>0):
+            self.text_txt_searchResult.insert(END,f"Tipo: {info_contenido_buscado[0][0][3]}"  + '\n')
+
+            for person in info_contenido_buscado[0]:
                 self.text_txt_searchResult.insert(END,f"-{person[1]} {person[0]}  ")
                 if(person[2] != None):
                     self.text_txt_searchResult.insert(END,f"Nombre Ficticio: {person[2]} ")
