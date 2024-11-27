@@ -136,3 +136,24 @@ def consulta_busqueda_info_contenido(cursor,contenido_id):
     cursor.execute(consulta,[contenido_id])
     filas = cursor.fetchall()
     return filas
+
+def consulta_busqueda_duracion_peliculas(cursor,contenido_id):
+    consulta = """
+    SELECT P.duracion
+    from Peliculas P, Contenido C
+    where P.contenido_id = C.Contenido_id and P.contenido_id = %s;
+    """
+    cursor.execute(consulta,[contenido_id])
+    filas = cursor.fetchone()
+    return filas
+
+def consulta_duracion_serie(cursor,contenido_id):
+    #Esta consulta devuelve la cantidad de capitulos totales de una serie, junto con la duracion promedio
+    consulta = """
+    SELECT count(*),avg(TIME_TO_SEC(CA.duracion)/60)
+    from Contenido C,Series S,temporada T,Capitulos CA
+    where S.contenido_id = C.Contenido_id and T.contenido_id = S.contenido_id and T.contenido_id = CA.contenido_id and CA.contenido_id = %s;
+    """
+    cursor.execute(consulta,[contenido_id])
+    filas = cursor.fetchone()
+    return filas
