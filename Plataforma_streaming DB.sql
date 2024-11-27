@@ -146,11 +146,11 @@ CREATE TABLE Capitulos (
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(1,'Test', 'test@gmail.com', "12345");
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(2,'Nacho', 'nachoferre22@gmail.com', "123");
 insert into Usuarios(usuario_id,nombre,email,contraseña)VALUES(3,'Nico', 'nicocricco@gmail.com', "123");
-insert into Usuarios(nombre,email,contraseña)VALUES('Juan', 'juan@gmail.com', "123");
-insert into Usuarios(nombre,email,contraseña)VALUES('Pepe', 'pepe@gmail.com', "123");
-insert into Usuarios(nombre,email,contraseña)VALUES('Martin', 'martin@gmail.com', "123");
-insert into Usuarios(nombre,email,contraseña)VALUES('Martin2', 'martin2@gmail.com', "123");
-insert into Usuarios(nombre,email,contraseña)VALUES('Julian', 'julain@gmail.com', "123");
+insert into Usuarios(nombre,email,contraseña)VALUES('Juan', 'juan@gmail.com', "juan1");
+insert into Usuarios(nombre,email,contraseña)VALUES('Pepe', 'pepe@gmail.com', "aa3");
+insert into Usuarios(nombre,email,contraseña)VALUES('Martin', 'martin@gmail.com', "583");
+insert into Usuarios(nombre,email,contraseña)VALUES('Martin2', 'martin2@gmail.com', "451");
+insert into Usuarios(nombre,email,contraseña)VALUES('Julian', 'julain@gmail.com', "juli@an");
 
 insert into categorias(nombre) values("Policial"); #1
 insert into categorias(nombre) values("Romantica"); #2
