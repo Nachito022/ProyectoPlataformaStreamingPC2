@@ -158,7 +158,8 @@ insert into categorias(nombre) values("Accion"); #6
 insert into categorias(nombre) values("Animada"); #7
 insert into categorias(nombre) values("Fantasía"); #8
 
-insert into Sagas(nombre_saga) values("Star Wars");
+insert into Sagas(saga_id,nombre_saga) values(1,"Star Wars");
+insert into Sagas(saga_id,nombre_saga) values(2,"Kung Fu Panda");
 
 insert into Artistas(nombre,artista_id) values("Tom Hanks",1);
 insert into Artistas(nombre,artista_id) values("Robin Wright",2);
@@ -198,9 +199,9 @@ insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fec
 insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(5,"Venom",4,6,false,"2024:11:10"); #5
 insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(6,"Magnum PI",5,1,FALSE,"2020:06:13"); #6
 insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(7,"Lucifer",3,5,FALSE,"2024:07:29"); #7
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda",5,7,TRUE,"2024:11:10"); #8
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 2",5,7,TRUE,"2024:11:10"); #9
-insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Kung Fu Panda 3",5,7,TRUE,"2024:11:10"); #10
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Kung Fu Panda",5,7,TRUE,"2024:11:10",2); #8
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Kung Fu Panda 2",5,7,TRUE,"2024:11:10",2); #9
+insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Kung Fu Panda 3",5,7,TRUE,"2024:11:10",2); #10
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values("Game of Thrones",5,8,FALSE,"2019:05:02"); #11
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("The Phantom Menace",5,8,TRUE,"2005:11:10",1); #12
 insert into contenido (titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion,saga_id) values("Attack of the Clones",5,8,TRUE,"2005:11:10",1); #13
@@ -559,6 +560,16 @@ insert into perfiles(usuario_id,tipo_perfil,nombre) values(3,TRUE,"Nico5");
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(1,6,5,1,"0:20:00","2020:05:16",5);
 
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(2,16,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(2,21,3,1,"0:20:00","2020:08:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(2,17,null,null,"2:20:00","2020:08:17",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(2,22,5,1,"0:20:00","2020:09:02",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(3,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(3,6,5,1,"0:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(5,5,null,null,"2:20:00","2020:05:16",5);
+
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,6,5,1,"0:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(6,14,null,null,"2:20:00","2020:05:16",5);
@@ -578,6 +589,39 @@ insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,ti
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(10,5,null,null,"2:20:00","2020:05:16",5);
 insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(10,6,5,1,"0:20:00","2020:05:16",5);
 
-#insert into Historial(perfil_id,contenido_id,capitulo_actual,tiempo_visualizado,fecha_visto,valoracion)
+
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,6,5,1,"0:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,16,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,21,3,1,"0:20:00","2020:08:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,17,null,null,"2:20:00","2020:08:17",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(12,22,5,1,"0:20:00","2020:09:02",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(13,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(13,6,5,1,"0:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(14,5,null,null,"2:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,6,5,1,"0:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,14,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,19,5,2,"0:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,8,null,null,"0:00:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,9,null,null,"0:59:00","2020:05:17",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,10,null,null,"0:55:00","2020:05:18",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,12,null,null,"0:42:00","2020:05:19",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,13,null,null,"0:35:00","2020:05:20",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,14,null,null,"0:20:00","2020:05:21",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,15,null,null,"0:10:00","2020:05:22",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(16,11,5,4,"0:20:00","2020:05:23",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(14,5,null,null,"2:20:00","2020:05:16",5);
+
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,5,null,null,"2:20:00","2020:05:16",5);
+insert into Historial(perfil_id,contenido_id,capitulo_actual,temporada_actual,tiempo_visualizado,fecha_visto,valoracion) values(15,6,5,1,"0:20:00","2020:05:16",5);
+
 
 
