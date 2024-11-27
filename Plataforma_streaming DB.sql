@@ -4,20 +4,19 @@ USE Plataforma_streaming;
 
 -- Esto elimina las tablas si exiten, esto se utilizó para no tener que
 -- eliminar las tablas una por una a la hora de hacer cambios. 
-DROP TABLE IF EXISTS Formulario;
-DROP TABLE IF EXISTS Historial;
-DROP TABLE IF EXISTS Perfiles;
-DROP TABLE IF EXISTS Contenido_Artistas;
-DROP TABLE IF EXISTS Peliculas;
-DROP TABLE IF EXISTS Capitulos;
-DROP TABLE IF EXISTS Temporada;
-DROP TABLE IF EXISTS Series;
-DROP TABLE IF EXISTS Contenido;
-DROP TABLE IF EXISTS Categorias;
-DROP TABLE IF EXISTS Artistas;
-DROP TABLE IF EXISTS Usuarios;
-DROP TABLE IF EXISTS Sagas;
-
+/*	DROP TABLE IF EXISTS Formulario;
+	DROP TABLE IF EXISTS Historial;
+	DROP TABLE IF EXISTS Contenido_Artistas;
+	DROP TABLE IF EXISTS Peliculas;
+	DROP TABLE IF EXISTS Capitulos;
+	DROP TABLE IF EXISTS Temporada;
+	DROP TABLE IF EXISTS Series;
+	DROP TABLE IF EXISTS Contenido;
+	DROP TABLE IF EXISTS Categorias;
+	DROP TABLE IF EXISTS Artistas;
+	DROP TABLE IF EXISTS Usuarios;
+	DROP TABLE IF EXISTS Sagas;
+*/
 
 
 
