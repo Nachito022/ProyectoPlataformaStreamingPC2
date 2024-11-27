@@ -195,6 +195,12 @@ def get_info_contenido_particular(data_contenido):
         try:
             # Inicio de las operaciones. Se busca la información de un contenido en particular a causa de una búsqueda
             datos_contenido.append(consultas.consulta_busqueda_info_contenido(cursor,data_contenido))
+            datos_contenido.append(consultas.consulta_busqueda_duracion_peliculas(cursor,data_contenido))
+            if(datos_contenido[1] == None):
+                #Esto significa que el contenido buscado es una serie
+                datos_contenido.append(consultas.consulta_duracion_serie(cursor,data_contenido))
+                #Se deja el None para luego utilizarlo en saber si la busqueda resultó en una serie o película
+
             # Confirma todos los cambios
             cnx.commit()
             print("Operaciones completadas exitosamente" )
@@ -206,4 +212,4 @@ def get_info_contenido_particular(data_contenido):
             # Cerrar el cursor y la conexión
             cursor.close()
             cnx.close()
-    return datos_contenido[0]
+    return datos_contenido
