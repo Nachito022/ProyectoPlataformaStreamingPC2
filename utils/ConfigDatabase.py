@@ -1,6 +1,4 @@
-import mysql.connector
-
-# Datos de conexión a la base de datos
+#En este archivo se debe configurar los parámetros del respectivo DB
 
 def get_config():
     config = {
