@@ -1,5 +1,5 @@
 
-#CREATE DATABASE Plataforma_streaming; 
+CREATE DATABASE Plataforma_streaming; 
 USE Plataforma_streaming;
 
 -- Esto elimina las tablas si exiten, esto se utilizó para no tener que
