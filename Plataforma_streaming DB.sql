@@ -4,19 +4,19 @@ USE Plataforma_streaming;
 
 -- Esto elimina las tablas si exiten, esto se utilizó para no tener que
 -- eliminar las tablas una por una a la hora de hacer cambios. 
-/*	DROP TABLE IF EXISTS Formulario;
-	DROP TABLE IF EXISTS Historial;
-	DROP TABLE IF EXISTS Contenido_Artistas;
-	DROP TABLE IF EXISTS Peliculas;
-	DROP TABLE IF EXISTS Capitulos;
-	DROP TABLE IF EXISTS Temporada;
-	DROP TABLE IF EXISTS Series;
-	DROP TABLE IF EXISTS Contenido;
-	DROP TABLE IF EXISTS Categorias;
-	DROP TABLE IF EXISTS Artistas;
-	DROP TABLE IF EXISTS Usuarios;
-	DROP TABLE IF EXISTS Sagas;
-*/
+DROP TABLE IF EXISTS Formulario;
+DROP TABLE IF EXISTS Historial;
+DROP TABLE IF EXISTS Contenido_Artistas;
+DROP TABLE IF EXISTS Peliculas;
+DROP TABLE IF EXISTS Capitulos;
+DROP TABLE IF EXISTS Temporada;
+DROP TABLE IF EXISTS Series;
+DROP TABLE IF EXISTS Contenido;
+DROP TABLE IF EXISTS Categorias;
+DROP TABLE IF EXISTS Artistas;
+DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS Sagas;
+
 
 
 
@@ -187,12 +187,12 @@ insert into Artistas(nombre,artista_id) values("Liam Neeson",19);
 insert into Artistas(nombre,artista_id) values("Natalie Portman",20);
 insert into Artistas(nombre,artista_id) values("Hayden Christensen",21);
 
-insert into Artistas(nombre) values("Tom Cruz");
-insert into Artistas(nombre) values("Tom Holland");
-insert into Artistas(nombre) values("Tom Hiddleston");
-insert into Artistas(nombre) values("Tom Hardy");
-insert into Artistas(nombre) values("Tom Selleck");
-insert into Artistas(nombre) values("Tom Ellis");
+insert into Artistas(nombre,artista_id) values("Tom Cruz",22);
+insert into Artistas(nombre,artista_id) values("Tom Holland",23);
+insert into Artistas(nombre,artista_id) values("Tom Hiddleston",24);
+insert into Artistas(nombre,artista_id) values("Tom Hardy",25);
+insert into Artistas(nombre,artista_id) values("Tom Selleck",26);
+insert into Artistas(nombre,artista_id) values("Tom Ellis",27);
 
 insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(1,"Forrest Gump",4,4,false,"2020:06:13"); #1
 insert into contenido (contenido_id,titulo,puntuacion,categoria_id,apto_kids,fecha_publicacion) values(2,"Mission Imposible",5,6,True,"2023:06:13"); #2
@@ -224,6 +224,13 @@ insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values
 insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(1,4,"Actor","Benjamin Buford Bubba Blue");
 insert into contenido_artistas (contenido_id,artista_id,rol) values(1,5,"Director");
 insert into contenido_artistas (contenido_id,artista_id,rol) values(1,6,"Productor");
+
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(2,22,"Actor","Ethan Hunt");
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(3,23,"Actor","Peter Parker");
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(4,24,"Actor","Loki");
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(5,25,"Actor","Eddie Brock");
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(6,26,"Actor","Thomas Magnum");
+insert into contenido_artistas (contenido_id,artista_id,rol,nom_ficticio) values(7,27,"Actor","Lucifer");
 
 insert into contenido_artistas (contenido_id,artista_id,rol) values(12,7,"Director");
 insert into contenido_artistas (contenido_id,artista_id,rol) values(13,7,"Director");
